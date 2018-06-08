@@ -32,7 +32,10 @@ To deploy to Heroku, you simply need to run:
 
 ```bash
 heroku create
+heroku addons:create heroku-postgresql:hobby-dev
 git push heroku master
+heroku run knex migrate:latest
+heroku open
 ```
 
 The `postinstall` script will make sure all relevant packages are installed.
