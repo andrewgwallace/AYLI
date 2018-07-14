@@ -8,7 +8,8 @@ const {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
+  MarkerWithLabel
+  // Marker
 } = require("react-google-maps");
 
 // Required library to show the marker clusters
@@ -17,10 +18,11 @@ const {
 } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 
 // Using the compose method component from the recompse library, generate the the properties required for the map element to be displayed
+
 const MapWithAMarkerClusterer = compose(
   withProps({
     googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyA3HUPGnMXmJP39ubMsFBVHjX1NNGwjY9A&v=3.exp&libraries=geometry,drawing", //removed `,places` after drawing'
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyA3HUPGnMXmJP39ubMsFBVHjX1NNGwjY9A&v=3.exp&libraries=geometry,drawing,places", //removed `,places` after drawing'
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />
@@ -48,15 +50,18 @@ const MapWithAMarkerClusterer = compose(
       enableRetinaIcons
       gridSize={60}
     >
-      {/* Map over each marker and set the key to the photo_id -- This will change to the show_id, seting the lat and lng to the performance latitude and longitude */}
       {props.shows.map(show => (
-        <Marker
+        <MarkerWithLabel
           key={show.id}
           position={{
             lat: parseFloat(show.lat),
             lng: parseFloat(show.lng)
           }}
-        />
+          labelAnchor={new google.maps.Point(0, 0)}
+          labelStyle={{ backgroundColor: "yellow", fontSize: "32px", padding: "16px" }}
+        >
+        <div>HI THERE CJ!</div>
+        </MarkerWithLabel>
       ))}
     </MarkerClusterer>
   </GoogleMap>
