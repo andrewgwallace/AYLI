@@ -23,7 +23,7 @@ app.get('/', (req, res, next) => {
   res.sendFile(index)
 })
 
-
+// Handles getting all show data that is used by Google Maps API on the frontend.
 app.get('/api/shows', (req, res, next) => {
   const index = path.join(__dirname, '../client/build/index.html')
   knex('shows')

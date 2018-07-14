@@ -8,14 +8,16 @@ const {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  MarkerWithLabel
-  // Marker
+  Marker
 } = require("react-google-maps");
 
 // Required library to show the marker clusters
 const {
   MarkerClusterer
 } = require("react-google-maps/lib/components/addons/MarkerClusterer");
+// const {
+//   MarkerWithLabel
+// } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
 
 // Using the compose method component from the recompse library, generate the the properties required for the map element to be displayed
 
@@ -51,17 +53,13 @@ const MapWithAMarkerClusterer = compose(
       gridSize={60}
     >
       {props.shows.map(show => (
-        <MarkerWithLabel
+        <Marker
           key={show.id}
           position={{
             lat: parseFloat(show.lat),
             lng: parseFloat(show.lng)
           }}
-          labelAnchor={new google.maps.Point(0, 0)}
-          labelStyle={{ backgroundColor: "yellow", fontSize: "32px", padding: "16px" }}
-        >
-        <div>HI THERE CJ!</div>
-        </MarkerWithLabel>
+        />
       ))}
     </MarkerClusterer>
   </GoogleMap>
@@ -94,7 +92,6 @@ class ShowMap extends React.PureComponent {
     );
   }
 }
-
 // END SHOW MAP
 
 
