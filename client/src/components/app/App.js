@@ -59,18 +59,21 @@ const MapWithAMarkerClusterer = compose(
   withGoogleMap
   // "props" here is a name simply given (could have been called anything) to identify the withProps that were provided for the Marker Cluster that pass the required info by Google Maps; the defaultZoom and defaultCenter.
 )(props => (
-  <GoogleMap defaultZoom={3} defaultCenter={{ lat: 25.0391667, lng: 121.525 }}>
+  <GoogleMap
+    defaultZoom={12}
+    defaultCenter={{ lat: 40.755977, lng: -73.986988 }}
+  >
     <MarkerClusterer
       onClick={props.onMarkerClustererClick}
       averageCenter
       enableRetinaIcons
       gridSize={60}
     >
-    {/* Map over each marker and set the key to the photo_id -- This will change to the performance_id, seting the lat and lng to the performance latitude and longitude */}
+      {/* Map over each marker and set the key to the photo_id -- This will change to the show_id, seting the lat and lng to the performance latitude and longitude */}
       {props.markers.map(marker => (
         <Marker
-          key={marker.photo_id}
-          position={{ lat: marker.latitude, lng: marker.longitude }}
+          key={marker.id}
+          position={{ lat: parseFloat(marker.lat), lng: parseFloat(marker.lng) }}
         />
       ))}
     </MarkerClusterer>
@@ -83,20 +86,30 @@ class DemoApp extends React.PureComponent {
     this.setState({ markers: [] })
   }
 
-  componentDidMount() {
-    const url = [
-      // Length issue
-      `https://gist.githubusercontent.com`,
-      `/farrrr/dfda7dd7fccfec5474d3`,
-      `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`
-    ].join("")
-
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ markers: data.photos });
-      });
+  componentDidMount = async () => {
+    const response = await fetch("http://localhost:3004/api/shows")
+    .then(res => res.json())
+    .then(data => {
+      if (data.shows) this.setState({ markers: data.shows })
+      console.log(this.state.markers)
+    })
   }
+
+    // ~~~~~~~~~~~~~~~
+  // componentDidMount() {
+  //  const url = [
+  //     // Length issue
+  //     `https://gist.githubusercontent.com`,
+  //     `/farrrr/dfda7dd7fccfec5474d3`,
+  //     `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`
+  //   ].join("")
+  //   fetch(url)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       this.setState({ markers: data.photos });
+  //     });
+      // ~~~~~~~~~~~~~~~
+  // }
 
   // Render the state of the markers on the map. 
   render() {
@@ -107,13 +120,6 @@ class DemoApp extends React.PureComponent {
 }
 
 export default DemoApp;
-
-
-
-
-
-
-
 
 
 

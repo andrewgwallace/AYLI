@@ -22,6 +22,14 @@ app.get('/', (req, res, next) => {
   const index = path.join(__dirname, '../client/build/index.html')
   res.sendFile(index)
 })
+
+
+app.get('/api/shows', (req, res, next) => {
+  const index = path.join(__dirname, '../client/build/index.html')
+  knex('shows')
+  .then(shows => res.json({shows: shows}))
+  .catch(error => { console.error(error);})
+})
 // handle error
 app.use((err, req, res, next) => {
   const status = err.status || 500
