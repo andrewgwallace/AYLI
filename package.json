@@ -1,0 +1,28 @@
+{
+  "name": "react-single-repo-example",
+  "version": "1.0.0",
+  "scripts": {
+    "build-client": "cd ./client && yarn build",
+    "dev": "npm run serve-client & nodemon ./server/app.js",
+    "postinstall": "cd ./client && yarn",
+    "serve-client": "cd ./client && yarn start",
+    "start": "npm run build-client && node ./server/app.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@google/maps": "^0.5.4",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "es6-promise": "^4.2.4",
+    "express": "^4.16.2",
+    "isomorphic-fetch": "^2.2.1",
+    "knex": "^0.14.6",
+    "morgan": "^1.9.0",
+    "pg": "^7.4.3",
+    "react-google-maps": "^9.4.5",
+    "recompose": "^0.27.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.7"
+  }
+}
