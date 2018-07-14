@@ -82,14 +82,16 @@ class ShowMap extends React.PureComponent {
         console.log(this.state.shows);
       });
   };
-
-  // Render the state of the markers on the map.
+  
+    // Render the state of the markers on the map.
   render() {
     return (
+      <div>
       !this.state.loading && (
         <MapWithAMarkerClusterer shows={this.state.shows} />
+        <button id="sign-in-with-twitter" onClick>Sign in with Twitter!</button>
+      </div>
       )
-    );
   }
 }
 // END SHOW MAP
