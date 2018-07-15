@@ -8,6 +8,7 @@ exports.seed = function (knex, Promise) {
         {
           id: "1",
           twitter_id: "agwallace",
+          email: "andrew.g.wallace@gmail.com",
           instagram_id: "feigningfigure",
           youtube_id: '',
           approved: "1"
@@ -15,6 +16,7 @@ exports.seed = function (knex, Promise) {
         {
           id: "2",
           twitter_id: "wuillymay",
+          email: "wuillymay@email.com",
           instagram_id: "wuillymay",
           youtube_id: '',
           approved: "1"
