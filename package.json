@@ -23,7 +23,6 @@
     "node-twitter-api": "^1.8.0",
     "pg": "^7.4.3",
     "react-google-maps": "^9.4.5",
-    "react-twitter-auth": "0.0.12",
     "recompose": "^0.27.1",
     "secret": "^1.0.2"
   },

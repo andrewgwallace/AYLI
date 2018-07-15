@@ -1,5 +1,6 @@
 import React from "react";
-import Twitter from '../Twitter/Twitter'
+import './App.css'
+import Twitter from '../twitter/Twitter'
 // START SHOW MAP
 
 const fetch = require("isomorphic-fetch");
@@ -95,11 +96,7 @@ class App extends React.PureComponent {
       !this.state.loading && (
         <div>
           <MapWithAMarkerClusterer shows={this.state.shows} />
-          <Twitter 
-            isAuthenticated={this.state.isAuthenticated}
-            token={this.state.token}
-            user={this.state.user}
-          />
+          <Twitter />
         </div>
       )
     )
