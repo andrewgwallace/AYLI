@@ -7,7 +7,6 @@ const knex = require('../db/knex')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const logger = require('morgan')
-const twitter = require('./twitter');
 
 
 app.disable('x-powered-by')
@@ -29,33 +28,6 @@ app.get('/api/shows', (req, res, next) => {
   .catch(error => { console.error(error);})
 })
 
-// TWITTER ACCESS TOKEN
-app.get('/access-token', (req, res, next) => {
-  let token = req.query.oauth_token
-  let verifier = req.query.oauth_verifier;
-
-  twitter.accessToken(token, verifier)
-  .then( accessToken => {
-    return twitter.verifyCredentials(accessToken);
-  })
-  .then(user => {
-    res.send(user);
-  })
-  .catch( error => {
-    console.error(error);
-  })
-})
-
-// TWITTER REQUEST TOKEN 
-app.get('/request-token', (req, res, next) => {
-  twitter.requestToken()
-  .then(requestToken => {
-    res.send(requestToken);
-  })
-  .catch(error => {
-    console.error(error);
-  })
-})
 
 // handle error
 app.use((err, req, res, next) => {

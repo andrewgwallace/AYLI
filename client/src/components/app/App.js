@@ -1,5 +1,5 @@
 import React from "react";
-
+import Twitter from '../Twitter/Twitter'
 // START SHOW MAP
 
 const fetch = require("isomorphic-fetch");
@@ -65,36 +65,47 @@ const MapWithAMarkerClusterer = compose(
   </GoogleMap>
 ));
 
+// THE MAIN APP COMPONENT
 // Establish the component to rendered passing in the state which contains the markers. `markers: data.photos` is an array; you'll pass the array of performances.
-class ShowMap extends React.PureComponent {
+class App extends React.PureComponent {
+
   componentWillMount() {
     this.setState({
       loading: true,
+      isAuthenticated: false, 
+      user: null,
+      token: '',
       shows: []
     });
   }
 
   componentDidMount = async () => {
-    const response = await fetch("http://localhost:3004/api/shows")
-      .then(res => res.json())
-      .then(data => {
-        if (data.shows) this.setState({ loading: false, shows: data.shows });
+    const showsResponse = await fetch("http://localhost:3004/api/shows")
+    const json = await showsResponse.json()
+    if (json.shows) {
+      this.setState({ loading: false, shows: json.shows });
         console.log(this.state.shows);
-      });
+    }
   };
-  
-    // Render the state of the markers on the map.
+
+  // Render the state of the markers on the map.
+
   render() {
     return (
-      <div>
       !this.state.loading && (
-        <MapWithAMarkerClusterer shows={this.state.shows} />
-        <button id="sign-in-with-twitter" onClick>Sign in with Twitter!</button>
-      </div>
+        <div>
+          <MapWithAMarkerClusterer shows={this.state.shows} />
+          <Twitter 
+            isAuthenticated={this.state.isAuthenticated}
+            token={this.state.token}
+            user={this.state.user}
+          />
+        </div>
       )
+    )
   }
 }
 // END SHOW MAP
 
 
-export default ShowMap;
+export default App;
