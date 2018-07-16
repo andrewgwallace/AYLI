@@ -1,70 +1,6 @@
 import React from "react";
 import './App.css'
-import Twitter from '../twitter/Twitter'
-// START SHOW MAP
-
-const fetch = require("isomorphic-fetch");
-const { compose, withProps, withHandlers } = require("recompose");
-const {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker
-} = require("react-google-maps");
-
-// Required library to show the marker clusters
-const {
-  MarkerClusterer
-} = require("react-google-maps/lib/components/addons/MarkerClusterer");
-// const {
-//   MarkerWithLabel
-// } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
-
-// Using the compose method component from the recompse library, generate the the properties required for the map element to be displayed
-
-const MapWithAMarkerClusterer = compose(
-  withProps({
-    googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyA3HUPGnMXmJP39ubMsFBVHjX1NNGwjY9A&v=3.exp&libraries=geometry,drawing,places", //removed `,places` after drawing'
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
-    mapElement: <div style={{ height: `100%` }} />
-  }),
-  // Handler functions that act in response to synthetic events occurring in React.
-  // DOCUMENTATION: https://recompose.docsforhumans.com/withhandlers.html These functions are passed as immmutable props (they don't change)
-  withHandlers({
-    onMarkerClustererClick: () => markerClusterer => {
-      const clickedMarkers = markerClusterer.getMarkers();
-      console.log(`Current clicked markers length: ${clickedMarkers.length}`);
-      console.log(clickedMarkers);
-    }
-  }),
-  withScriptjs,
-  withGoogleMap
-  // "props" here is a name simply given (could have been called anything) to identify the withProps that were provided for the Marker Cluster that pass the required info by Google Maps; the defaultZoom and defaultCenter.
-)(props => (
-  <GoogleMap
-    defaultZoom={10}
-    defaultCenter={{ lat: 40.755977, lng: -73.986988 }}
-  >
-    <MarkerClusterer
-      onClick={props.onMarkerClustererClick}
-      averageCenter
-      enableRetinaIcons
-      gridSize={60}
-    >
-      {props.shows.map(show => (
-        <Marker
-          key={show.id}
-          position={{
-            lat: parseFloat(show.lat),
-            lng: parseFloat(show.lng)
-          }}
-        />
-      ))}
-    </MarkerClusterer>
-  </GoogleMap>
-));
+import EventsContainer from '../eventsContainer/EventsContainer'
 
 // THE MAIN APP COMPONENT
 // Establish the component to rendered passing in the state which contains the markers. `markers: data.photos` is an array; you'll pass the array of performances.
@@ -72,22 +8,12 @@ class App extends React.PureComponent {
 
   componentWillMount() {
     this.setState({
-      loading: true,
+      loading: false,
       isAuthenticated: false, 
       user: null,
-      token: '',
-      shows: []
+      token: ''
     });
   }
-
-  componentDidMount = async () => {
-    const showsResponse = await fetch("api/shows")
-    const shows = await showsResponse.json()
-    if (shows) {
-      this.setState({ loading: false, shows: shows });
-        console.log(this.state.shows);
-    }
-  };
 
   // Render the state of the markers on the map.
 
@@ -95,8 +21,7 @@ class App extends React.PureComponent {
     return (
       !this.state.loading && (
         <div>
-          <MapWithAMarkerClusterer shows={this.state.shows} />
-          <Twitter />
+          <EventsContainer />
         </div>
       )
     )
