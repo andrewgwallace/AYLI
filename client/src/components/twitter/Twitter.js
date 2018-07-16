@@ -3,9 +3,9 @@ import TwitterLogin from "react-twitter-auth/lib/react-twitter-auth-component.js
 // import './Twitter.css';
 
 class Twitter extends Component {
-  constructor(props) {
-    super(props);
-   }
+  // constructor(props) {
+  //   super(props);
+  //  }
 
   state = {
     isAuthenticated: false,

@@ -7,6 +7,7 @@ const knex = require('../db/knex')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const logger = require('morgan')
+const showRoutes = require('./routes/shows')
 
 
 app.disable('x-powered-by')
@@ -15,6 +16,8 @@ app.use(logger('dev'));
 app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/api/shows', showRoutes);
+
 
 app.get('/', (req, res, next) => {
   const index = path.join(__dirname, '../client/build/index.html')
@@ -22,11 +25,11 @@ app.get('/', (req, res, next) => {
 })
 
 // Handles getting all show data that is used by Google Maps API on the frontend.
-app.get('/api/shows', (req, res, next) => {
-  knex('shows')
-  .then(shows => res.json({shows: shows}))
-  .catch(error => { console.error(error);})
-})
+// app.get('/api/shows', (req, res, next) => {
+//   knex('shows')
+//   .then(shows => res.json({shows: shows}))
+//   .catch(error => { console.error(error);})
+// })
 
 
 // handle error

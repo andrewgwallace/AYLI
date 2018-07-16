@@ -81,10 +81,10 @@ class App extends React.PureComponent {
   }
 
   componentDidMount = async () => {
-    const showsResponse = await fetch("http://localhost:3004/api/shows")
-    const json = await showsResponse.json()
-    if (json.shows) {
-      this.setState({ loading: false, shows: json.shows });
+    const showsResponse = await fetch("api/shows")
+    const shows = await showsResponse.json()
+    if (shows) {
+      this.setState({ loading: false, shows: shows });
         console.log(this.state.shows);
     }
   };
