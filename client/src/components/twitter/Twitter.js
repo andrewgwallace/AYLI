@@ -40,10 +40,10 @@ class Twitter extends Component {
       </div>
     ) : (
       <TwitterLogin
-        loginUrl="http://localhost:3000/api/v1/auth/twitter"
+        loginUrl="http://localhost:3004/api/v1/auth/twitter"
         onFailure={this.onFailed}
         onSuccess={this.onSuccess}
-        requestTokenUrl="http://localhost:3000/api/v1/auth/twitter/reverse"
+        requestTokenUrl="http://localhost:3004/api/v1/auth/twitter/reverse"
       />
     )
     return (

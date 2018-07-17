@@ -24,14 +24,6 @@ app.get('/', (req, res, next) => {
   res.sendFile(index)
 })
 
-// Handles getting all show data that is used by Google Maps API on the frontend.
-// app.get('/api/shows', (req, res, next) => {
-//   knex('shows')
-//   .then(shows => res.json({shows: shows}))
-//   .catch(error => { console.error(error);})
-// })
-
-
 // handle error
 app.use((err, req, res, next) => {
   const status = err.status || 500

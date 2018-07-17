@@ -2,6 +2,7 @@
 exports.up = function (knex, Promise) {
   return knex.schema.createTable('artists', t => {
     t.increments();
+    // Change to 'status'
     t.integer('approved');
     t.integer('licensed');
     t.string('twitter_id');
