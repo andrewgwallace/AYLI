@@ -22,7 +22,7 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
-  secret: process.env.SESSION_SECRET
+  secret: process.env.TWITTER_TOKEN_SECRET
 }))
 app.use(passport.initialize())
 app.use(passport.session());
