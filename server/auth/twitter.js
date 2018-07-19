@@ -67,9 +67,9 @@ passport.use(new TwitterStrategy({
             next(err)
           } else {
             res.cookie('token', token)
-            // res.redirect('/')
-            }
-          });
+            res.redirect('/login.html');
+          }
+        });
       }
     })(req, res, next);
   });

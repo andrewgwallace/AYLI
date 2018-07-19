@@ -1,6 +1,6 @@
 // This container is the wrapper for the other compontents as it contains the primary state and methods.
 import React, { Component } from "react";
-import Twitter from "../twitter/Twitter"; 
+import LoginAndDetails from "../logInAndDetails/LogInAndDetails"; 
 import ShowMap from '../showMap/ShowMap';
 import SearchIndex from "../searchIndex/SearchIndex";
 
@@ -33,7 +33,7 @@ class EventsContainer extends Component {
         <div>
           <SearchIndex shows={this.state.shows} />
           <ShowMap shows={this.state.shows} />
-          <Twitter />
+          <LoginAndDetails />
         </div>
         )
     }
