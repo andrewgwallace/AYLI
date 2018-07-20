@@ -6,7 +6,6 @@ class Twitter extends Component {
     user: null
   }
 
-  
   componentDidMount(){
     this.parseToken();
   }
@@ -39,11 +38,10 @@ class Twitter extends Component {
 
   render() {
     return (
-      {
-        !this.state.user ? <button onClick={this.twitterLogin}>Twitter Sign-In</button>
+        !this.state.user ? 
+        <button onClick={this.twitterLogin}>Twitter Sign-In</button>
         :
         <button onClick={this.logout}>Log Out</button>
-      }
     )
   }
 }

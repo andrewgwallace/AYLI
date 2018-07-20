@@ -10,12 +10,19 @@ class EventsContainer extends Component {
     this.state = {
       loading: true,
       isAuthenticated: false,
+      userType: "vistor",
+      artistStatus: null,
       user: null,
       token: "",
       shows: []
     };
   }
 
+  // getArtistStatus = async () => {
+  //   const status = await fetch()
+  // }
+
+  
   componentDidMount = async () => {
     //Get all shows
     const showsResponse = await fetch("api/shows")
@@ -33,7 +40,7 @@ class EventsContainer extends Component {
         <div>
           <SearchIndex shows={this.state.shows} />
           <ShowMap shows={this.state.shows} />
-          <LoginAndDetails />
+          <LoginAndDetails isAuthenticated={this.state.isAuthenticated}/>
         </div>
         )
     }
