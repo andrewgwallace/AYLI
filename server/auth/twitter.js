@@ -34,7 +34,7 @@ passport.use(new TwitterStrategy({
         } else {
 
           return knex('artists')
-            .insert(artist, '*', { approved: 1 })
+            .insert(artist, '*', { approved: 1 }) // '1' = "Pending"
         }
         }).then(user => {
           callback(null, user[0]);
@@ -53,13 +53,13 @@ passport.use(new TwitterStrategy({
       if (err) {
         return next(err);
       } else {
-        console.log(user);
         const payload = {
-          // id: user.id,
+          id: user.id,
           twitter_id: user.twitter_id,
-          // profileImg: user.profile_image_url_https,
-          // displayName: user.displayName
+          profileImg: user.profile_image_url_https,
+          displayName: user.displayName
         };
+        console.log(payload)
         jwt.sign(payload, process.env.TWITTER_TOKEN_SECRET, {
           expiresIn: '1d'
         }, (err, token) => {

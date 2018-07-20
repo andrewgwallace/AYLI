@@ -6,14 +6,15 @@ class Twitter extends Component {
     user: null
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.parseToken();
   }
 
-  parseToken(){
+  parseToken() {
     if (localStorage.token) {
       const base64Payload = localStorage.token.split('.')[1]
       const decodedPayload = atob(base64Payload)
+      console.log(decodedPayload);
       const user = JSON.parse(decodedPayload)
       this.setState({
         user
@@ -21,11 +22,22 @@ class Twitter extends Component {
     }
   }
 
-  twitterLogin = () => {
+  logout = (e) => {
+    e.preventDefault();
+    this.setState({
+      user: null
+    })
+  }
+
+  twitterLogin = (e) => {
+    e.preventDefault();
     let popup;
     window.addEventListener('message', (event) => {
       if (event.data.token) {
         localStorage.token = event.data.token;
+        this.setState({
+          user: "Test"
+        })
         popup.close();
       }
     });
@@ -33,12 +45,12 @@ class Twitter extends Component {
     const height = 600;
     const top = window.screen.height / 2 - height / 2;
     const left = window.screen.width / 2 - width / 2;
-    popup = window.open('http://localhost:3004/auth/twitter', 'Sign In With Twitter', `width=${width},height=${height},top=${top},left=${left},resizable,scrollbar=es,status=1`)
+    popup = window.open('http://localhost:3004/auth/twitter', 'Sign In With Twitter', `width=${width},height=${height},top=${top},left=${left},resizable,scrollbar=yes,status=1`)
   }
 
   render() {
     return (
-        !this.state.user ? 
+      !this.state.user ?
         <button onClick={this.twitterLogin}>Twitter Sign-In</button>
         :
         <button onClick={this.logout}>Log Out</button>
