@@ -15,13 +15,14 @@ passport.use(new TwitterStrategy({
   function (tauth_token, tokenSecret, profile, callback) {
 
   profile = profile._json
+  // console.log(profile)
   const artist = {
     twitter_id: profile.screen_name,
-    // profileImg: profile.profile_image_url_https,
-    // displayName: profile.displayName,
-    // id: profile.id,
+    profileImg: profile.profile_image_url_https,
+    displayName: profile.name,
     tauth_token,
   };
+  // console.log(artist);
     knex("artists")
       .where('twitter_id', artist.twitter_id )
       .first()
@@ -54,9 +55,8 @@ passport.use(new TwitterStrategy({
         return next(err);
       } else {
         const payload = {
-          id: user.id,
           twitter_id: user.twitter_id,
-          profileImg: user.profile_image_url_https,
+          profileImg: user.profileImg,
           displayName: user.displayName
         };
         console.log(payload)

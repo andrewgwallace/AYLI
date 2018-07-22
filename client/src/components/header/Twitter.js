@@ -14,19 +14,21 @@ class Twitter extends Component {
     if (localStorage.token) {
       const base64Payload = localStorage.token.split('.')[1]
       const decodedPayload = atob(base64Payload)
-      console.log(decodedPayload);
       const user = JSON.parse(decodedPayload)
       this.setState({
         user
+      })
+    } else {
+      this.setState({
+        user: null
       })
     }
   }
 
   logout = (e) => {
     e.preventDefault();
-    this.setState({
-      user: null
-    })
+    localStorage.removeItem('token');
+    this.parseToken();
   }
 
   twitterLogin = (e) => {
@@ -36,7 +38,7 @@ class Twitter extends Component {
       if (event.data.token) {
         localStorage.token = event.data.token;
         this.setState({
-          user: "Test"
+          user: null
         })
         popup.close();
       }
