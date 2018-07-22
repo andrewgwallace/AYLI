@@ -7,7 +7,7 @@ const index = () => {
       // 'artists.twitter_id', 'artists.instagram_id', 'artists.youtube_id', 'shows.location', 'shows.details', 'shows.lat', 'shows.lng', 'shows.date_time'
       .select("artists.twitter_id", "artists.instagram_id", "artists.youtube_id", "shows.location", "shows.details", "shows.lat", "shows.lng", "shows.date_time")
       .then(rows => {
-        console.log(rows);
+        // console.log(rows);
         return rows;
       })
       .catch(error => {

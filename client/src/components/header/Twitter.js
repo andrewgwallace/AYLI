@@ -2,33 +2,32 @@ import React, { Component } from 'react';
 // import './Twitter.css';
 
 class Twitter extends Component {
-  state = {
-    user: null
+  constructor(props) {
+    super(props);
   }
+    // state = {
+  //   user: null
+  // }
 
   componentDidMount() {
     this.parseToken();
   }
 
-  parseToken() {
+  parseToken(user) {
     if (localStorage.token) {
       const base64Payload = localStorage.token.split('.')[1]
       const decodedPayload = atob(base64Payload)
       const user = JSON.parse(decodedPayload)
-      this.setState({
-        user
-      })
-    } else {
-      this.setState({
-        user: null
-      })
-    }
+      this.props.updateUser(user);
+      return user
+   }
+    this.props.updateUser(user);   
   }
 
   logout = (e) => {
     e.preventDefault();
-    localStorage.removeItem('token');
-    this.parseToken();
+    localStorage.removeItem('token')
+    this.parseToken()
   }
 
   twitterLogin = (e) => {
@@ -37,10 +36,13 @@ class Twitter extends Component {
     window.addEventListener('message', (event) => {
       if (event.data.token) {
         localStorage.token = event.data.token;
-        this.setState({
-          user: null
-        })
+        // this.setState({
+        //   user: null
+        // })
+        this.parseToken();
+
         popup.close();
+        
       }
     });
     const width = 700;
@@ -51,8 +53,9 @@ class Twitter extends Component {
   }
 
   render() {
+    
     return (
-      !this.state.user ?
+      !this.props.currentUser ? 
         <button onClick={this.twitterLogin}>Twitter Sign-In</button>
         :
         <button onClick={this.logout}>Log Out</button>
