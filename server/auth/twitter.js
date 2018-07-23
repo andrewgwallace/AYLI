@@ -20,6 +20,7 @@ passport.use(new TwitterStrategy({
     twitter_id: profile.screen_name,
     profileImg: profile.profile_image_url_https,
     displayName: profile.name,
+    bio: profile.description,
     tauth_token,
   };
   // console.log(artist);
@@ -57,7 +58,8 @@ passport.use(new TwitterStrategy({
         const payload = {
           twitter_id: user.twitter_id,
           profileImg: user.profileImg,
-          displayName: user.displayName
+          displayName: user.displayName,
+          bio: user.bio
         };
         console.log(payload)
         jwt.sign(payload, process.env.TWITTER_TOKEN_SECRET, {

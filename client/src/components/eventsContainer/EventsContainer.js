@@ -2,17 +2,14 @@
 import React, { Component } from "react";
 import ShowMap from '../showMap/ShowMap';
 import SearchIndex from "../searchIndex/SearchIndex";
+// import ArtistDetails from "../details/ArtistDetails";
 
 class EventsContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
       loading: true,
-      isAuthenticated: false,
-      userType: "vistor",
-      artistStatus: null,
-      user: null,
-      token: "",
+      currentArtist: null,
       shows: []
     };
   }
@@ -39,6 +36,7 @@ class EventsContainer extends Component {
         <div>
           <SearchIndex shows={this.state.shows} />
           <ShowMap shows={this.state.shows} />
+          {/* <ArtistDetails currentArtist={this.state.currentArtist} /> */}
         </div>
         )
     }
