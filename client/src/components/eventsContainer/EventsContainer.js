@@ -1,7 +1,9 @@
 // This container is the wrapper for the other compontents as it contains the primary state and methods.
 import React, { Component } from "react";
+import EventsList from "./EventsList";
 import ShowMap from '../showMap/ShowMap';
-import SearchIndex from "../searchIndex/SearchIndex";
+import './EventsContainer.css'
+
 // import ArtistDetails from "../details/ArtistDetails";
 
 class EventsContainer extends Component {
@@ -10,7 +12,7 @@ class EventsContainer extends Component {
     this.state = {
       loading: true,
       currentArtist: null,
-      shows: []
+      showsAndArtists: []
     };
   }
 
@@ -20,11 +22,11 @@ class EventsContainer extends Component {
 
 
   componentDidMount = async () => {
-    //Get all shows
-    const showsResponse = await fetch("api/shows")
-    const shows = await showsResponse.json()
-    if (shows) {
-      this.setState({ loading: false, shows: shows });
+    //Get all shows and artist name and image.
+    const response = await fetch("api/shows");
+    const data = await response.json()
+    if (data) {
+      this.setState({ loading: false, showsAndArtists: data });
     }
   };
 
@@ -34,9 +36,13 @@ class EventsContainer extends Component {
     } else {
       return (
         <div>
-          <SearchIndex shows={this.state.shows} />
-          <ShowMap shows={this.state.shows} />
-          {/* <ArtistDetails currentArtist={this.state.currentArtist} /> */}
+          <div className="eventsList">
+            <EventsList showsAndArtists={this.state.showsAndArtists} />
+          </div>
+          <div className="eventsMap">
+            <ShowMap shows={this.state.showsAndArtists} />
+          </div>
+          {/* <ArtistDetails artistDetails={this.state.showsAndArtists} /> */}
         </div>
         )
     }

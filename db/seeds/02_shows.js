@@ -22,6 +22,15 @@ exports.seed = function (knex, Promise) {
           location: "Times Square, NYC",
           details: "I'm right in the center of Times Square near the walking path.",
           artist_id: "2"
+        },
+        {
+          id: "3",
+          date_time: "2018-07-14 14:00",
+          lat: "42.757230",
+          lng: "-73.989799",
+          location: "NYC",
+          details: "Test",
+          artist_id: "3"
         }
       ]);
     });

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 const fetch = require("isomorphic-fetch");
-const { compose, withProps, withHandlers, withStateHandlers } = require("recompose");
+const { compose, withProps, withHandlers } = require("recompose");
 const {
   withScriptjs,
   withGoogleMap,

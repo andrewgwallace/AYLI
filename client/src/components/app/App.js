@@ -9,10 +9,7 @@ class App extends React.PureComponent {
 
   componentWillMount() {
     this.setState({
-      loading: false,
-      isAuthenticated: false, 
-      user: null,
-      token: ''
+      loading: false
     });
   }
 
