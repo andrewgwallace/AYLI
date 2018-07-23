@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Twitter from './Twitter'
+// import SearchBox from './SearchBox'
 
 class Header extends Component {
   state = {
@@ -16,7 +17,10 @@ class Header extends Component {
 
   render() {
     return (
+      <div>
       <Twitter updateUser={this.updateUser} currentUser={this.state.user}/>
+      {/* <SearchBox /> */}
+      </div>
     )
   }
 }

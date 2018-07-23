@@ -34,7 +34,6 @@ class EventsContainer extends Component {
     const data = await response.json()
     if (data) {
       this.setState({ loading: false, showsAndArtists: data });
-      console.log(data)
     }
   };
 
@@ -43,20 +42,18 @@ class EventsContainer extends Component {
       return null
     } else {
       const currentEvent = this.state.showsAndArtists.find((show) => show.id === this.state.currentEvent)
-      return (
-        <div>
+      return <div>
           <div className="eventDetails">
-            <EventDetails currentEvent={currentEvent} />   
+            <EventDetails currentEvent={currentEvent} />
           </div>
           <div className="eventsList">
             <EventsList showsAndArtists={this.state.showsAndArtists} updateCurrentEvent={this.updateCurrentEvent} />
           </div>
           <div className="eventsMap">
-            <ShowMap shows={this.state.showsAndArtists} />
+            <ShowMap shows={this.state.showsAndArtists} currentEvent={currentEvent} updateCurrentEvent={this.updateCurrentEvent} />
           </div>
           {/* <ArtistDetails artistDetails={this.state.showsAndArtists} /> */}
-        </div>
-        )
+        </div>;
     }
   }
 }

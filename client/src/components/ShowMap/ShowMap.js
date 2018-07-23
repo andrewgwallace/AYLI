@@ -5,17 +5,20 @@ const {
 } = require("react-google-maps");
 
 class ShowMap extends Component {       
-  constructor(props) {
-    super(props)
-  }
+  // constructor(props) {
+  //   super(props)
+  // }
   
   render() {
-    if (!this.props.shows) {
+    
+    const shows = this.props.shows;
+    if (!shows) {
       return null
     } else {
-      const showList = this.props.shows.map(show => {
+      const showList = shows.map(show => {
         return(
           <Marker
+            onClick={() => this.props.updateCurrentEvent(show.id)}
             key={show.id}
             position={{
               lat: parseFloat(show.lat),
@@ -35,3 +38,5 @@ class ShowMap extends Component {
 }
 
 export default ShowMap;
+
+// onClick = {() => this.props.updateCurrentEvent(id)}
