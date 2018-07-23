@@ -36,6 +36,7 @@ class EventsContainer extends Component {
     } else {
       return (
         <div>
+          <div className="details"><p>Details</p></div>
           <div className="eventsList">
             <EventsList showsAndArtists={this.state.showsAndArtists} />
           </div>
