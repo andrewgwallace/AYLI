@@ -10,10 +10,9 @@ class EventsList extends Component {
     if (!showsAndArtists) {
       return null
     } else {
-      console.log(showsAndArtists);
       const ArtistDetails = showsAndArtists.map(details => {
         return (
-          <EventsListItem key={details.id} details={details} />
+          <EventsListItem key={details.id} details={details} updateCurrentEvent={this.props.updateCurrentEvent} />
         );
       });
       return (

@@ -10,6 +10,7 @@ exports.seed = function (knex, Promise) {
           twitter_id: "agwallace",
           displayName: "Andrew Wallace",
           email: "andrew.g.wallace@gmail.com",
+          profileImg: "https://pbs.twimg.com/profile_images/976960658020368384/PJ0N4Pty_normal.jpg",
           instagram_id: "feigningfigure",
           youtube_id: '',
           approved: "2" //'2' = approved
@@ -18,6 +19,7 @@ exports.seed = function (knex, Promise) {
           id: "2",
           twitter_id: "wuillymay",
           displayName: "Wuilly Moises Arteaga",
+          profileImg: "https://pbs.twimg.com/profile_images/963421744458592256/HF85rgaR_normal.jpg",
           email: "wuillymay@email.com",
           instagram_id: "wuillymay",
           youtube_id: '',

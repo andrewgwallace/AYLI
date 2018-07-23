@@ -1,6 +1,7 @@
 // This container is the wrapper for the other compontents as it contains the primary state and methods.
 import React, { Component } from "react";
 import EventsList from "./EventsList";
+import EventDetails from "./EventDetails";
 import ShowMap from '../showMap/ShowMap';
 import './EventsContainer.css'
 
@@ -11,9 +12,15 @@ class EventsContainer extends Component {
     super(props)
     this.state = {
       loading: true,
-      currentArtist: null,
+      currentEvent: null,
       showsAndArtists: []
     };
+  }
+
+  updateCurrentEvent = (currentEvent) => {
+    this.setState ({
+      currentEvent
+    })
   }
 
   // getArtistStatus = async () => {
@@ -27,6 +34,7 @@ class EventsContainer extends Component {
     const data = await response.json()
     if (data) {
       this.setState({ loading: false, showsAndArtists: data });
+      console.log(data)
     }
   };
 
@@ -34,11 +42,14 @@ class EventsContainer extends Component {
     if (this.state.loading) {
       return null
     } else {
+      const currentEvent = this.state.showsAndArtists.find((show) => show.id === this.state.currentEvent)
       return (
         <div>
-          <div className="details"><p>Details</p></div>
+          <div className="eventDetails">
+            <EventDetails currentEvent={currentEvent} />   
+          </div>
           <div className="eventsList">
-            <EventsList showsAndArtists={this.state.showsAndArtists} />
+            <EventsList showsAndArtists={this.state.showsAndArtists} updateCurrentEvent={this.updateCurrentEvent} />
           </div>
           <div className="eventsMap">
             <ShowMap shows={this.state.showsAndArtists} />

@@ -5,18 +5,20 @@ class EventsListItem extends Component {
 
 
   render() {
-    console.log(this.props.showsAndArtists);
-    const { instagram_id, youtube_id, twitter_id, displayName, profileImg, bio } = this.props.details;
-
+    // console.log(this.props.showsAndArtists);
+    const { id, instagram_id, youtube_id, twitter_id, displayName, profileImg, bio } = this.props.details;
     // const {
     //   id, date_time, details
     // } = this.props.item
     // let dt = datetime.create(date_time)
     // let formattedDate = dt.format('m/d/y H:M');
-    return <div>
-        <img src={profileImg} />
-        <h1>{displayName}</h1>
-      </div>;
+    return (
+      <div className="itemDetails" 
+            onClick={() => this.props.updateCurrentEvent(id)}>
+        <img src={profileImg}/>
+        <h2>{displayName}</h2>
+      </div>
+    )
   }
 }
 
