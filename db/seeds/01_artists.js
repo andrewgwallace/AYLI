@@ -12,7 +12,7 @@ exports.seed = function (knex, Promise) {
           email: "andrew.g.wallace@gmail.com",
           profileImg: "https://pbs.twimg.com/profile_images/976960658020368384/PJ0N4Pty_normal.jpg",
           instagram_id: "feigningfigure",
-          youtube_id: '',
+          youtube_id: 'nanascho3',
           approved: "2" //'2' = approved
         },
         {

@@ -6,7 +6,6 @@ const {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
 } = require("react-google-maps");
 
 // Required library to show the marker clusters
@@ -40,7 +39,7 @@ const MapWithAMarkerClusterer = compose(
   // "props" here is a name simply given (could have been called anything) to identify the withProps that were provided for the Marker Cluster that pass the required info by Google Maps; the defaultZoom and defaultCenter.
 )(props => (
   <GoogleMap
-    defaultZoom={10}
+    defaultZoom={13}
     defaultCenter={{ lat: 40.755977, lng: -73.986988 }}
   >
     <MarkerClusterer

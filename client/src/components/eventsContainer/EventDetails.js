@@ -3,7 +3,12 @@ import React, { Component } from 'react';
 class EventDetails extends Component {
 
   render() {
+    const twURL = "https://www.twitter.com/"
+    const ytURL = "https://www.youtube.com/user/"
+    const igURL = "https://www.instagram.com/"
+
     const eventDetails = this.props.currentEvent
+    
     if (!eventDetails) {
       return (
         <div>
@@ -13,12 +18,16 @@ class EventDetails extends Component {
         </div>
       )
     } else {
+      console.log(eventDetails.instagram_id);
       return (
         <div>
           <img src={eventDetails.profileImg}/>
           <h1>{eventDetails.displayName}</h1>
           <p>{eventDetails.details}</p>
-          
+          <p>{eventDetails.bio}</p>
+          <a href={twURL + eventDetails.twitter_id} target="_blank"> <img src="/social/tw.png" className='social-icon tw-icon'/></a>
+          {eventDetails.youtube_id && <a href={ytURL + eventDetails.youtube_id} target="_blank"><img src="/social/yt.png" className='social-icon yt-icon' /></a>}
+          {eventDetails.instagram_id && <a href={igURL + eventDetails.instagram_id} target="_blank"><img src="/social/ig.png" className='social-icon ig-icon' /></a>}          
         </div>
       )
     }

@@ -7,6 +7,7 @@ class EventsListItem extends Component {
   render() {
     // console.log(this.props.showsAndArtists);
     const { id, instagram_id, youtube_id, twitter_id, displayName, profileImg, bio } = this.props.details;
+    console.log(profileImg.replace(/(_normal)/g, "_400x400"))
     // const {
     //   id, date_time, details
     // } = this.props.item
