@@ -5,10 +5,7 @@ const {
 } = require("react-google-maps");
 
 class ShowMap extends Component {       
-  // constructor(props) {
-  //   super(props)
-  // }
-  
+ 
   render() {
     
     const shows = this.props.shows;

@@ -18,18 +18,22 @@ class EventDetails extends Component {
         </div>
       )
     } else {
-      console.log(eventDetails.instagram_id);
-      return (
-        <div>
-          <img src={eventDetails.profileImg}/>
+      return <div>
+        <img src={eventDetails.profileImg.replace(/(_normal)/g, "_200x200")} />
           <h1>{eventDetails.displayName}</h1>
           <p>{eventDetails.details}</p>
           <p>{eventDetails.bio}</p>
-          <a href={twURL + eventDetails.twitter_id} target="_blank"> <img src="/social/tw.png" className='social-icon tw-icon'/></a>
-          {eventDetails.youtube_id && <a href={ytURL + eventDetails.youtube_id} target="_blank"><img src="/social/yt.png" className='social-icon yt-icon' /></a>}
-          {eventDetails.instagram_id && <a href={igURL + eventDetails.instagram_id} target="_blank"><img src="/social/ig.png" className='social-icon ig-icon' /></a>}          
-        </div>
-      )
+          <a href={twURL + eventDetails.twitter_id} target="_blank">
+            {" "}
+            <img src="/social/tw.png" className="social-icon tw-icon" />
+          </a>
+          {eventDetails.youtube_id && <a href={ytURL + eventDetails.youtube_id} target="_blank">
+              <img src="/social/yt.png" className="social-icon yt-icon" />
+            </a>}
+          {eventDetails.instagram_id && <a href={igURL + eventDetails.instagram_id} target="_blank">
+              <img src="/social/ig.png" className="social-icon ig-icon" />
+            </a>}
+        </div>;
     }
     // const { instagram_id, youtube_id, twitter_id, displayName, profileImg, bio } = this.props.artistDetails
   }

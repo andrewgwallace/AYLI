@@ -23,11 +23,6 @@ class EventsContainer extends Component {
     })
   }
 
-  // getArtistStatus = async () => {
-  //   const status = await fetch()
-  // }
-
-
   componentDidMount = async () => {
     //Get all shows and artist name and image.
     const response = await fetch("api/shows");
