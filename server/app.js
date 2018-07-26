@@ -36,16 +36,16 @@ app.use('/api/shows', showRoutes);
 //Get address search result data
 
 app.get(`/search/`, (req, res, next) => {
-  // console.log(req)
-  // console.log(req.query.s)
-  // console.log(req.body)
   const search = decodeURI(req.query.s)
   axios.get(
       "http://nominatim.openstreetmap.org/search?q=" + search + "&format=json"
     )
     .then(response => {
-      console.log(response.data);
-    });
+      res.send(response.data); // You will need to map over this as it's an array of objects
+    })
+    .catch(error => {
+      console.log(error);
+    })
   // console.log(response.data.results[0].geometry.location)
 });
 

@@ -12,7 +12,7 @@ class SearchBox extends Component {
     const search = encodeURI(this.state.value);
     axios.get(`${baseURL}/search?s=${search}`)
     .then(response => {
-      console.log(response);
+      console.log(response.data[0].lat);
       // if (data) {
       //   console.log(data)
       // }
