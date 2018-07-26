@@ -3,7 +3,8 @@ import axios from 'axios'
 
 class SearchBox extends Component {
   state = {
-    value: ""
+    value: "",
+    results: []
   };
 
   onSubmit = e => {
@@ -12,10 +13,15 @@ class SearchBox extends Component {
     const search = encodeURI(this.state.value);
     axios.get(`${baseURL}/search?s=${search}`)
     .then(response => {
-      console.log(response.data[0].lat);
-      // if (data) {
-      //   console.log(data)
-      // }
+      const data = response.data.map(result => {
+       return {"lat": result.lat, lon: result.lon, boundingbox: result.boundingbox}
+      })
+      this.setState({
+        results: data
+      })
+    })
+    .then(() => {
+      console.log(this.state.results)
     })
     .catch(error => {
       console.log(error)
