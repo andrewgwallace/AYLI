@@ -1,27 +1,45 @@
 import React, { Component } from "react"
+import axios from 'axios'
 
 class SearchBox extends Component {
-
   state = {
-    value: ''
+    value: ""
+  };
+
+  onSubmit = e => {
+    const baseURL = "http://localhost:3004"
+    e.preventDefault();
+    const search = encodeURI(this.state.value);
+    axios.get(`${baseURL}/search?s=${search}`)
+    .then(response => {
+      console.log(response);
+      // if (data) {
+      //   console.log(data)
+      // }
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  };
+
+  handleChange = e => {
+    this.setState({ value: e.target.value });
+  };
+
+  render() {
+
+    return (
+      <form onSubmit={this.onSubmit}>
+        <input
+          type="text"
+          name="address"
+          value={this.state.search}
+          onChange={this.handleChange}
+        />
+        <button type="submit">Search</button>
+      </form>
+    );
   }
-
-onSubmit = (e) => {
-  console.log(`You are going to search for ${this.state.value}`)
-  e.preventDefault();
-}
-
-handleChange = (e) => {
-  this.setState({ value: e.target.value });
-}
-
-render() {
-  return <form onSubmit={this.onSubmit}>
-    <input type="text" name="address" value={this.state.value} onChange={this.handleChange}/> 
-      <button type="submit">Search</button>
-    </form>;
-}
-
 }
 
 export default SearchBox
