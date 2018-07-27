@@ -10,7 +10,7 @@ class SearchBox extends Component {
   
 
   render() {
-    console.log(this.props.currentSearch)
+    // console.log(this.props.currentSearch)
     return (
       <form onSubmit={this.props.submitSearch}>
         <input

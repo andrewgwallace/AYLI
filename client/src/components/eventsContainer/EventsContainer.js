@@ -15,7 +15,7 @@ class EventsContainer extends Component {
       loading: true,
       currentEvent: null,
       showsAndArtists: [],
-      search: 'Enter an address'
+      search: ''
     };
 
 
@@ -65,51 +65,32 @@ class EventsContainer extends Component {
       e.preventDefault();
       const baseURL = "http://localhost:3004"
       const query = encodeURI(this.state.search)
-      console.log(`${baseURL}/search?s=${query}`);
+      // console.log(`${baseURL}/search?s=${query}`);
     axios.get(`${baseURL}/search?s=${query}`)
       .then( response => {
         // Get search points from API call into an array
         const searchPoints = response.data.map(result => {
           return { latitude: parseFloat(result.lat), longitude: parseFloat(result.lon)};
         })
-        console.log(searchPoints)
+        // console.log(searchPoints)
         const events = this.state.showsAndArtists;
         //Grab event points from state
         const eventPoints = events.map(event => {
           return {latitude: parseFloat(event.lat), longitude: parseFloat(event.lng)}
         })
-        console.log(eventPoints)
-        let testEvent = { latitude: 40.755977, longitude: -73.986988 }
-        let testLocation = { latitude: 40.741895, longitude: -73.989308 };
-
-        for (let i = 0; i < searchPoints.length; i++) {
-        let location = searchPoints[i];
-          console.log(location)
+                
+        for (let i=0; i < searchPoints.length; i++) {
+          let results = eventPoints.filter(event => {
+            geolib.isPointInCircle(event, searchPoints[i], 2000)
+          })
+          console.log(results)
         }
-
-        // let results = eventPoints.filter(event => {
-          
-        // })
-        // console.log(results);
-        
+      })
 
 
-        // return cats.filter(function (cat) {
-        //   return filtersArray.indexOf(cat) > -1;
-        // }).length === filtersArray.length;
-
-        console.log(geolib.isPointInCircle(
-          testEvent, testLocation, 1609)
-        )
-
-          //GEOLIB Library: It takes three arguments, 1: the value to check, 2: the value to check against, 3: the distance in km. It returns 'true' or 'false'.
-          // let results = eventPoints.filter(point => {
-          //   for (let i = 0; i < searchPoints.length; i++) {
-          //     geolib.isPointInCircle(point, searchPoints[i], 2000)
-          //   }
-          // })
-      }
-    )
+         
+      
+    
 
      /*, boundingbox: parseFloat(result.boundingbox)*/
 
