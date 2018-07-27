@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-
 const fetch = require("isomorphic-fetch");
-const { compose, withProps, withHandlers } = require("recompose");
+const _ = require("lodash");
+const { compose, withProps, withHandlers, lifecycle } = require("recompose");
 const {
   withScriptjs,
   withGoogleMap,
@@ -25,6 +25,55 @@ const MapWithAMarkerClusterer = compose(
     containerElement: <div style={{ height: `100vh` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
+//~~~~~~~~~~~~~~~~~~~~~~
+  lifecycle({
+    componentWillMount() {
+      const refs = {}
+
+      this.setState({
+        bounds: null,
+        center: {
+          lat: 41.9, lng: -87.624
+        },
+        markers: [],
+        onMapMounted: ref => {
+          refs.map = ref;
+        },
+        onBoundsChanged: () => {
+          this.setState({
+            bounds: refs.map.getBounds(),
+            center: refs.map.getCenter(),
+          })
+        },
+        onSearchBoxMounted: ref => {
+          refs.searchBox = ref;
+        },
+        onPlacesChanged: () => {
+          const places = refs.searchBox.getPlaces();
+          const bounds = new window.google.maps.LatLngBounds();
+
+          places.forEach(place => {
+            if (place.geometry.viewport) {
+              bounds.union(place.geometry.viewport)
+            } else {
+              bounds.extend(place.geometry.location)
+            }
+          });
+          const nextMarkers = places.map(place => ({
+            position: place.geometry.location,
+          }));
+          const nextCenter = _.get(nextMarkers, '0.position', this.state.center);
+
+          this.setState({
+            center: nextCenter,
+            markers: nextMarkers,
+          });
+          // refs.map.fitBounds(bounds);
+        },
+      })
+    },
+  }),
+  //~~~~~~~~~~~~~~~~~~~~
   // Handler functions that act in response to synthetic events occurring in React.
   // DOCUMENTATION: https://recompose.docsforhumans.com/withhandlers.html These functions are passed as immmutable props (they don't change)
   withHandlers({
@@ -43,12 +92,14 @@ const MapWithAMarkerClusterer = compose(
     defaultCenter={{ lat: 40.755977, lng: -73.986988 }}
   >
     <MarkerClusterer
+
       onClick={props.onMarkerClustererClick}
       averageCenter
       enableRetinaIcons
       gridSize={60}
     >
       {props.shows}
+      {/* {props.searchResults} */}
     </MarkerClusterer>
   </GoogleMap>
 ));

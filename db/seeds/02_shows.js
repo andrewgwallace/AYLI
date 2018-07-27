@@ -11,7 +11,8 @@ exports.seed = function (knex, Promise) {
           lat: "40.755977",
           lng: "-73.986988",
           location: "42nd St and 7th Ave.",
-          details: "I'll be playing by the Union Street mural right before you exit onto 42nd",
+          details:
+            "I'll be playing by the Union Street mural right before you exit onto 42nd",
           artist_id: "1"
         },
         {
@@ -20,14 +21,15 @@ exports.seed = function (knex, Promise) {
           lat: "40.757230",
           lng: "-73.989799",
           location: "Times Square, NYC",
-          details: "I'm right in the center of Times Square near the walking path.",
+          details:
+            "I'm right in the center of Times Square near the walking path.",
           artist_id: "2"
         },
         {
           id: "3",
           date_time: "2018-07-14 14:00",
-          lat: "42.757230",
-          lng: "-73.989799",
+          lat: "45.646812",
+          lng: "-84.474826",
           location: "NYC",
           details: "Test",
           artist_id: "3"

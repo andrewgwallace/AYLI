@@ -1,6 +1,14 @@
 const knex = require("../../db/knex");
+// const geolib = require('geolib');
 
-const index = () => {
+// const findResults = (query, locations) => {
+
+//   locations.forEach(location => {
+    
+//   })
+// }
+
+const index = (query, locations) => {
   return (
     knex("shows")
       .join("artists", "shows.artist_id", "artists.id")
@@ -16,6 +24,15 @@ const index = () => {
   );
 };
 
+// const search = queryStr => {
+//   return knex('shows')
+//     .then(rows => {
+//       return findResults(decodeURI(query), rows);
+//     })
+//     .catch(error => { console.error(error); }); // the error catching
+// }
+
 module.exports = {
   index
+  // search
 }

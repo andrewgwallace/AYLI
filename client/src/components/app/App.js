@@ -19,7 +19,6 @@ class App extends React.PureComponent {
     return (
       !this.state.loading && (
         <div>
-          <Header />
           <EventsContainer />
         </div>
       )

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import MapWithAMarkerClusterer from "./MapWithAMarkerClusterer";
+import SearchBox from "../header/SearchBox";
 const {
   Marker
 } = require("react-google-maps");
+
 
 class ShowMap extends Component {       
  
@@ -27,7 +29,7 @@ class ShowMap extends Component {
       // console.log(this.props.shows);
       return (
         <div>
-          <MapWithAMarkerClusterer shows={showList} />
+          <MapWithAMarkerClusterer shows={showList} searchResults={this.props.searchResults} />
         </div>
       )
     }
@@ -37,3 +39,5 @@ class ShowMap extends Component {
 export default ShowMap;
 
 // onClick = {() => this.props.updateCurrentEvent(id)}
+
+

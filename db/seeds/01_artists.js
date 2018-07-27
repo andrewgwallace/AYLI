@@ -30,8 +30,8 @@ exports.seed = function (knex, Promise) {
           twitter_id: "ayliapp",
           displayName: "AYLIAPP",
           profileImg: "https://pbs.twimg.com/profile_images/1019671193282985984/yI3sq-jQ_normal.jpg", 
-          email: "wuillymay@email.com",
-          instagram_id: "wuillymay",
+          email: "ayli@ayliapp.com",
+          instagram_id: "ayliapp",
           youtube_id: '',
           approved: "2"
         }

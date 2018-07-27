@@ -14,12 +14,11 @@ class Header extends Component {
     })
   }
 
-
   render() {
     return (
       <div>
       <Twitter updateUser={this.updateUser} currentUser={this.state.user}/>
-      <SearchBox />
+      <SearchBox submitSearch={this.props.search}/>
       </div>
     )
   }
