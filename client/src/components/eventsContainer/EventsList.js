@@ -6,8 +6,8 @@ class EventsList extends Component {
   
 
   render() {
-    // const results = this.props.showsAndArtists
-    const results = this.props.submitSearch
+    const results = this.props.showsAndArtists
+    // const results = this.props.submitSearch
     if(!results) {
       return null
     } else {

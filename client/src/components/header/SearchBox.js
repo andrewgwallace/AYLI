@@ -1,24 +1,23 @@
 import React, { Component } from "react"
 
 class SearchBox extends Component {
-  state = {
-    value: "",
-    results: []
-  };
-
-  handleChange = e => {
-    this.setState({ value: e.target.value });
-  };
+  // state = {
+  //   value: "",
+  //   results: []
+  // };
+ 
+  onChange = (e) => { this.props.updateSearch(e.target.name, e.target.value) }
+  
 
   render() {
-
+    console.log(this.props.currentSearch)
     return (
       <form onSubmit={this.props.submitSearch}>
         <input
           type="text"
-          name="address"
-          value={this.state.search}
-          onChange={this.handleChange}
+          name="search"
+          value={this.props.currentSearch}
+          onChange={this.onChange}
         />
         <button type="submit">Search</button>
       </form>
