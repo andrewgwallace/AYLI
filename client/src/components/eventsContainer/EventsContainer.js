@@ -41,26 +41,6 @@ class EventsContainer extends Component {
     }
   };
 
-    // findResults = (eventPoints, searchPoints) => {
-    //   let results = [];
-    //   let lastEvent = eventPoints => {
-    //     return eventPoints[eventPoints.length - 1];
-    //   };
-    //   let remainingSearchPoints = searchPoints => {
-    //     return searchPoints.slice(searchPoints[0], -1);
-    //   };
-    //   if (searchPoints.length === 0) {
-    //     return []
-    //   }
-    //   if (geolib.isPointInCircle(lastEvent, searchPoints[0, -1], 1609)) {
-    //     return lastEvent
-    //   } else {
-    //     console.log('Nope.')
-    //   }
-    // }
-
-
-
     submitSearch = (e) => {
       e.preventDefault();
       const baseURL = "http://localhost:3004"
@@ -78,30 +58,16 @@ class EventsContainer extends Component {
         const eventPoints = events.map(event => {
           return {latitude: parseFloat(event.lat), longitude: parseFloat(event.lng)}
         })
-                
+
         for (let i=0; i < searchPoints.length; i++) {
+          console.log(searchPoints[i])
           let results = eventPoints.filter(event => {
-            geolib.isPointInCircle(event, searchPoints[i], 2000)
-          })
-          console.log(results)
-        }
-      })
-
-
-         
-      
-    
-
-     /*, boundingbox: parseFloat(result.boundingbox)*/
-
-
-        // Pass each search point to see what events are within a 1 mile radius of it
-        // searchPoints.(point => { searchPoints.map(location => {
-          // geolib.isPointInCircle(point, {latitude: location.lat, longitude: location.lon},
-          //   1609))// Approx 1 mile in kilometers (Find events within one mile of respective lat/long of search)
-          // })
-        // })
-      // })
+            console.log(event);
+            geolib.isPointInCircle(event, searchPoints[i], 5000);
+        })
+        console.log(results)
+      }
+    })
 };
 
   render() {
