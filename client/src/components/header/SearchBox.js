@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import { Input } from 'antd'
+const Search = Input.Search
 
 class SearchBox extends Component {
   // state = {
@@ -12,15 +14,17 @@ class SearchBox extends Component {
   render() {
     // console.log(this.props.currentSearch)
     return (
-      <form onSubmit={this.props.submitSearch}>
-        <input
+        <Search
           type="text"
           name="search"
           value={this.props.currentSearch}
+          enterButton
           onChange={this.onChange}
+          placeholder="Enter an address or zipcode"
+          style={{ width: 500 }}
+          onSearch={this.props.submitSearch}
         />
-        <button type="submit">Search</button>
-      </form>
+
     );
   }
 }

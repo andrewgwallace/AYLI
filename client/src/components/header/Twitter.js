@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
+import { Button, Icon } from 'antd'
 // import './Twitter.css';
 
 class Twitter extends Component {
-  constructor(props) {
-    super(props);
-  }
-    // state = {
-  //   user: null
-  // }
+
+    state = {
+      size: 'default',
+    }
 
   componentDidMount() {
     this.parseToken();
@@ -53,12 +52,12 @@ class Twitter extends Component {
   }
 
   render() {
-    
+    const size = this.state.size;
     return (
       !this.props.currentUser ? 
-        <button onClick={this.twitterLogin}>Twitter Sign-In</button>
+        <Button onClick={this.twitterLogin} type="primary" icon="twitter" size={size}>Sign In</Button>
         :
-        <button onClick={this.logout}>Log Out</button>
+        <Button onClick={this.logout} type="primary" icon="twitter" size={size}>Log Out</Button>
     )
   }
 }

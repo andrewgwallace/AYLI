@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import Twitter from './Twitter'
 import SearchBox from './SearchBox'
+import {
+  Layout,
+  Menu,
+  Avatar,
+} from 'antd';
 
-class Header extends Component {
+const { Header } = Layout;
+
+class HeaderComponent extends Component {
   state = {
     loggedIn: false,
     user: null
@@ -16,12 +23,15 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
-      <Twitter updateUser={this.updateUser} currentUser={this.state.user}/>
-        <SearchBox submitSearch={this.props.search} updateSearch={this.props.updateSearch} currentSearch={this.props.currentSearch}/>
-      </div>
+      <Layout className="layout">
+        <Header>
+          <div className="logo" />
+            <SearchBox submitSearch={this.props.search} updateSearch={this.props.updateSearch} currentSearch={this.props.currentSearch} />
+            <Twitter updateUser={this.updateUser} currentUser={this.state.user} />
+      </Header>
+    </Layout>
     )
   }
 }
 
-export default Header
+export default HeaderComponent
