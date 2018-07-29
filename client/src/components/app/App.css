@@ -19,7 +19,7 @@
 .App-message {
   font-weight: bold;
 } */
-
+/* ~~~~~~~~~~~~~~~ */
 @import '~antd/dist/antd.css';
 
 #components-layout-demo-top .logo {
@@ -65,9 +65,26 @@ a.sendRequestButton.ant-btn {
 }
 
 .ant-card-bordered {
-  border: 7px solid #041528;
+  border: 1px solid #041528;
 }
 
 .ant-steps-label-horizontal {
   padding: 3% 0 3% 0
+}
+
+/* .twitter-login {
+  float: right;
+  margin-top: 15px;
+} */
+
+/* .SearchBox {
+  width: 35vw;
+} */
+
+.ant-layout-header {
+  padding: 0 25px;
+}
+
+.ant-col-8 {
+  padding: 5px;
 }

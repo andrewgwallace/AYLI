@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Icon } from 'antd'
+import { Button, Layout } from 'antd'
 // import './Twitter.css';
-
+import '../app/App.css'
+const {Content} = Layout
 class Twitter extends Component {
 
     state = {
@@ -53,12 +54,11 @@ class Twitter extends Component {
 
   render() {
     const size = this.state.size;
-    return (
-      !this.props.currentUser ? 
-        <Button onClick={this.twitterLogin} type="primary" icon="twitter" size={size}>Sign In</Button>
-        :
-        <Button onClick={this.logout} type="primary" icon="twitter" size={size}>Log Out</Button>
-    )
+    return !this.props.currentUser ? <Button onClick={this.twitterLogin} className="twitter-login" type="primary" icon="twitter" size={size}>
+        Sign In
+      </Button> : <Button onClick={this.logout} className="twitter-login" type="primary" icon="twitter" size={size}>
+        Log Out
+      </Button>;
   }
 }
 

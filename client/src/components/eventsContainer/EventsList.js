@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EventsListItem from './EventsListItem'
-
+import {List, Avatar} from 'antd';
 
 class EventsList extends Component {
   
@@ -11,14 +11,25 @@ class EventsList extends Component {
     if(!results) {
       return null
     } else {
-    // console.log(this.props.submitSearch)
-    // Map over each event and pass it's lat/lon into a map over of each value from the search result that runs the geolib function.
-    //If evaluates to true, pass the matching events into a new array and pass that array to the EventListItem component.
-
-    const eventDetails = results.map(details => {
-      return <EventsListItem key={details.id} details={details} updateCurrentEvent={this.props.updateCurrentEvent} results={this.results} />;
-    });
-    return eventDetails;
+      console.log(results)
+    // const eventDetails = results.map(details => {
+    //   return 
+    //   <EventsListItem key={details.id} details={details} updateCurrentEvent={this.props.updateCurrentEvent} results={this.results} />;
+    // });
+    return (
+      <List
+        itemLayout="horizontal"
+        dataSource={results}
+        renderItem={item => (
+          <List.Item onClick={() => this.props.updateCurrentEvent(item.id)}>
+            <List.Item.Meta
+              avatar={<Avatar src={item.profileImg}/>}
+              title={item.displayName}
+            />
+        </List.Item>
+      )}
+      />
+     ) 
     }
   }
 }

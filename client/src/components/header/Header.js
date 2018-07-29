@@ -3,7 +3,8 @@ import Twitter from './Twitter'
 import SearchBox from './SearchBox'
 import {
   Layout,
-  Menu,
+  Row,
+  Col,
   Avatar,
 } from 'antd';
 
@@ -25,11 +26,25 @@ class HeaderComponent extends Component {
     return (
       <Layout className="layout">
         <Header>
-          <div className="logo" />
-            <SearchBox submitSearch={this.props.search} updateSearch={this.props.updateSearch} currentSearch={this.props.currentSearch} />
-            <Twitter updateUser={this.updateUser} currentUser={this.state.user} />
-      </Header>
-    </Layout>
+        <div className="searchAndTwitter">
+          <Row>
+            <Col span={6}>
+            <h1>AYLI</h1>
+            </Col>
+
+            <Col span={12}>
+              <SearchBox submitSearch={this.props.search} updateSearch={this.props.updateSearch} currentSearch={this.props.currentSearch} />
+            </Col>
+              <Col span={6} style={{ textAlign: 'right' }}> 
+              <Twitter 
+              
+              updateUser={this.updateUser} 
+              currentUser={this.state.user} />
+            </Col>
+          </Row>
+          </div>           
+        </Header>
+      </Layout>
     )
   }
 }

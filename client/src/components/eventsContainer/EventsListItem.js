@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {List, Avatar} from 'antd';
 // var datetime = require("node-datetime");
 
 class EventsListItem extends Component {
@@ -7,13 +8,9 @@ class EventsListItem extends Component {
   render() {
     const { id, instagram_id, youtube_id, twitter_id, displayName, profileImg, bio } = this.props.details;
  
-    return (
-      <div className="itemDetails" 
-            onClick={() => this.props.updateCurrentEvent(id)}>
-        <img src={profileImg}/>
-        <h2>{displayName}</h2>
-      </div>
-    )
+    return <List.Item onClick={() => this.props.updateCurrentEvent(id)}>
+        <List.Item.Meta avatar={<Avatar src={profileImg} />} title={displayName} />
+      </List.Item>;
   }
 }
 

@@ -1,5 +1,7 @@
 import React, { Component } from "react"
 import { Input } from 'antd'
+// import './SearchBox.css'
+
 const Search = Input.Search
 
 class SearchBox extends Component {
@@ -14,17 +16,15 @@ class SearchBox extends Component {
   render() {
     // console.log(this.props.currentSearch)
     return (
-        <Search
-          type="text"
-          name="search"
-          value={this.props.currentSearch}
-          enterButton
-          onChange={this.onChange}
-          placeholder="Enter an address or zipcode"
-          style={{ width: 500 }}
-          onSearch={this.props.submitSearch}
-        />
-
+      <Search className="SearchBox"
+        type="text"
+        name="search"
+        value={this.props.currentSearch}
+        enterButton
+        onChange={this.onChange}
+        placeholder="Enter an address or zipcode"
+        onSearch={this.props.submitSearch}
+      />
     );
   }
 }

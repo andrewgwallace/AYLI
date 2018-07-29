@@ -5,10 +5,10 @@ import EventDetails from "./EventDetails";
 import ShowMap from '../showMap/ShowMap';
 import HeaderComponent from '../header/Header'
 import './EventsContainer.css'
-import { Layout } from 'antd';
+import { Row, Col, Layout } from 'antd';
 const axios = require('axios');
 const geolib = require('geolib');
-const {Content } = Layout;
+const { Content } = Layout;
 
 // import ArtistDetails from "../details/ArtistDetails";
 
@@ -77,17 +77,21 @@ class EventsContainer extends Component {
       return null
     } else {
       const currentEvent = this.state.showsAndArtists.find((show) => show.id === this.state.currentEvent)
-      return (
-        <div className="headerAndContent">
+      return <div className="headerAndContent">
           <Content>
-          <HeaderComponent search={this.submitSearch} updateSearch={this.updateSearch} currentSearch={this.state.search}/>
-          <EventDetails currentEvent={currentEvent} />
-          <EventsList showsAndArtists={this.state.showsAndArtists} updateCurrentEvent={this.updateCurrentEvent} />
-          <ShowMap shows={this.state.showsAndArtists} currentEvent={currentEvent} updateCurrentEvent={this.updateCurrentEvent} />
-        </Content>
-      </div>
+            <HeaderComponent search={this.submitSearch} updateSearch={this.updateSearch} currentSearch={this.state.search} />
+            <Row>
+              <Col span={8}>
+                <EventDetails currentEvent={currentEvent} />
+              </Col>
 
-      )
+            <Col span={8}><EventsList showsAndArtists={this.state.showsAndArtists} updateCurrentEvent={this.updateCurrentEvent} /></Col>
+              
+            <Col span={8}><ShowMap shows={this.state.showsAndArtists} currentEvent={currentEvent} updateCurrentEvent={this.updateCurrentEvent} /></Col>
+              
+            </Row>
+          </Content>
+        </div>;
     }
   }
 }
