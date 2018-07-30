@@ -7,7 +7,8 @@ exports.seed = function (knex, Promise) {
       return knex("shows").insert([
         {
           id: "1",
-          date_time: "2018-07-13 11:34",
+          start_date_time: "2018-07-13 11:34",
+          end_time: "16:00",
           lat: "40.755977",
           lng: "-73.986988",
           location: "42nd St and 7th Ave.",
@@ -17,7 +18,8 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: "2",
-          date_time: "2018-07-14 14:00",
+          start_date_time: "2018-07-14 14:00",
+          end_time: "17:00",
           lat: "40.757230",
           lng: "-73.989799",
           location: "Times Square, NYC",
@@ -27,7 +29,8 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: "3",
-          date_time: "2018-07-14 14:00",
+          start_date_time: "2018-07-14 14:00",
+          end_time: "19:00",
           lat: "45.646812",
           lng: "-84.474826",
           location: "NYC",

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Twitter from './Twitter'
-import SearchBox from './SearchBox'
+import SearchButton from './SearchButton'
 import {
   Layout,
   Row,
@@ -33,7 +33,7 @@ class HeaderComponent extends Component {
             </Col>
 
             <Col span={12}>
-              <SearchBox submitSearch={this.props.search} updateSearch={this.props.updateSearch} currentSearch={this.props.currentSearch} />
+              <SearchButton submitSearch={this.props.search} updateSearch={this.props.updateSearch} currentSearch={this.props.currentSearch} />
             </Col>
               <Col span={6} style={{ textAlign: 'right' }}> 
               <Twitter 

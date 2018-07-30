@@ -4,7 +4,7 @@ import { Button } from 'antd'
 
 // const Search = Input.Search
 
-class SearchBox extends Component {
+class SearchButton extends Component {
   // state = {
   //   value: "",
   //   results: []
@@ -41,4 +41,4 @@ class SearchBox extends Component {
   }
 }
 
-export default SearchBox
+export default SearchButton

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import MapWithAMarkerClusterer from "./MapWithAMarkerClusterer";
-import SearchBox from "../header/SearchBox";
+import SearchButton from "../header/SearchButton";
 const {
   Marker
 } = require("react-google-maps");
@@ -9,12 +9,6 @@ const {
 class ShowMap extends Component {       
  
   render() {
-    if (navigator.geolocation) {
-      console.log("Yup")
-    } else {
-      console.log("Nope.")
-    }
-    
     const shows = this.props.shows;
     if (!shows) {
       return null

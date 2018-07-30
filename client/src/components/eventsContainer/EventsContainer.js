@@ -17,8 +17,7 @@ class EventsContainer extends Component {
       loading: true,
       currentEvent: null,
       showsAndArtists: [],
-      search: '',
-      currentUser: null
+      searchResults: []
     };
 
 
@@ -67,20 +66,25 @@ class EventsContainer extends Component {
   axios
     .get(`${baseURL}/search?s=${location}`)
     .then(response => {
-      const userLocation = {latitude: response.data[0].lat, longitude: response.data[0].lon}
-      // Get search points from API call into an array
-      // .map(result => {
-      //   return { latitude: parseFloat(result.lat), longitude: parseFloat(result.lon) };
-      // });
+      const userLocation = {latitude: parseFloat(response.data[0].lat), longitude: parseFloat(response.data[0].lon)}
       const events = this.state.showsAndArtists;
-      //Grab event points from state
       const eventPoints = events.map(event => {
-        return { latitude: parseFloat(event.lat), longitude: parseFloat(event.lng) };
+        return {location: { 
+          latitude: parseFloat(event.lat), 
+          longitude: parseFloat(event.lng)},
+          artist: event.displayName,
+          artistImg: event.profileImg,
+          start_time: event.start_date_time,
+          end_time: event.end_time
+        };
       });
-        let results = eventPoints.filter(event => {
-          return geolib.isPointInCircle(event, userLocation, 1609);
-        });
-        console.log(results);
+      let results = eventPoints.filter(event => {
+        const isIn = geolib.isPointInCircle(event.location, userLocation, 20000);
+        return isIn;
+      });
+        this.setState({
+          searchResults: results
+        })
     });
 };
 
@@ -96,13 +100,10 @@ class EventsContainer extends Component {
               <Col span={6}>
                 <EventDetails currentEvent={currentEvent} />
               </Col>
-              <Col span={6}>
-                <EventsList showsAndArtists={this.state.showsAndArtists} updateCurrentEvent={this.updateCurrentEvent} />
-              </Col>
-
-              <Col span={12}>
-                <ShowMap shows={this.state.showsAndArtists} currentEvent={currentEvent} updateCurrentEvent={this.updateCurrentEvent} />
-              </Col>
+            <Col span={6}><EventsList nearbyEvents={this.state.searchResults} updateCurrentEvent={this.updateCurrentEvent} /></Col>
+              
+            <Col span={12}><ShowMap shows={this.state.showsAndArtists} currentEvent={currentEvent} updateCurrentEvent={this.updateCurrentEvent} /></Col>
+              
             </Row>
           </Content>
         </div>;
