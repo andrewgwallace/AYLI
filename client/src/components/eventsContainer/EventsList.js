@@ -18,6 +18,7 @@ class EventsList extends Component {
     // });
     return (
       <List
+        style={{ width: '80%' }}
         itemLayout="horizontal"
         dataSource={results}
         renderItem={item => (

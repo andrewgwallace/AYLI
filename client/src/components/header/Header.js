@@ -37,7 +37,6 @@ class HeaderComponent extends Component {
             </Col>
               <Col span={6} style={{ textAlign: 'right' }}> 
               <Twitter 
-              
               updateUser={this.updateUser} 
               currentUser={this.state.user} />
             </Col>

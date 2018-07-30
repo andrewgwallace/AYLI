@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Card, Icon} from 'antd'
+import "./EventsContainer.css";
+
 const {Meta} = Card;
 
 class EventDetails extends Component {
@@ -8,7 +10,6 @@ class EventDetails extends Component {
     const twURL = "https://www.twitter.com/"
     const ytURL = "https://www.youtube.com/user/"
     const igURL = "https://www.instagram.com/"
-    const fbURL = "https://www.facebook.com/"
 
     const eventDetails = this.props.currentEvent
     
@@ -21,7 +22,10 @@ class EventDetails extends Component {
         </div>
       )
     } else {
-      return <Card cover={<img src={eventDetails.profileImg.replace(/(_normal)/g, "_200x200")} />} style={{ width: 200 }}>
+      return (
+      <div className="details">
+
+      <Card cover={<img src={eventDetails.profileImg.replace(/(_normal)/g, "_200x200")} />} style={{ width: '80%' }}>
           <h1>{eventDetails.displayName}</h1>
 
         <a href={twURL + eventDetails.twitter_id} target="_blank">
@@ -40,7 +44,8 @@ class EventDetails extends Component {
           <Meta 
           description={eventDetails.details} />
         </Card>;
-
+        </div>
+      )
         /* <a href={twURL + eventDetails.twitter_id} target="_blank">
             {" "}
             <img src="/social/tw.png" className="social-icon tw-icon" />

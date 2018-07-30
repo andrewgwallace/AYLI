@@ -9,6 +9,11 @@ const {
 class ShowMap extends Component {       
  
   render() {
+    if (navigator.geolocation) {
+      console.log("Yup")
+    } else {
+      console.log("Nope.")
+    }
     
     const shows = this.props.shows;
     if (!shows) {

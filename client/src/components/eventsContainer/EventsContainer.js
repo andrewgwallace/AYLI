@@ -6,18 +6,19 @@ import ShowMap from '../showMap/ShowMap';
 import HeaderComponent from '../header/Header'
 import './EventsContainer.css'
 import { Row, Col, Layout } from 'antd';
+import { callbackify } from "util";
 const axios = require('axios');
 const geolib = require('geolib');
 const { Content } = Layout;
 
-// import ArtistDetails from "../details/ArtistDetails";
 
 class EventsContainer extends Component {
     state = {
       loading: true,
       currentEvent: null,
       showsAndArtists: [],
-      search: ''
+      search: '',
+      currentUser: null
     };
 
 
@@ -43,33 +44,44 @@ class EventsContainer extends Component {
     }
   };
 
-  submitSearch = () => {
-    // e.preventDefault();
-    const baseURL = "http://localhost:3004"
-    const query = encodeURI(this.state.search)
-    // console.log(`${baseURL}/search?s=${query}`);
-  axios.get(`${baseURL}/search?s=${query}`)
-    .then( response => {
+  getLocation = () => {
+    return new Promise((resolve) => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        resolve(
+          `${position.coords.latitude}+${position.coords.longitude}`
+        );
+      }, () => {
+        resolve(fetch('https://ipapi.co/json')
+          .then(res => res.json())
+          .then(location => {
+            return `${location.latitude}+${location.longitude}`
+          }));
+      });
+    });
+  }
+
+  submitSearch = async () => {
+    const baseURL = "http://localhost:3004";
+    const location = await this.getLocation();
+    // const query = encodeURI(this.state.search)
+  axios
+    .get(`${baseURL}/search?s=${location}`)
+    .then(response => {
+      const userLocation = {latitude: response.data[0].lat, longitude: response.data[0].lon}
       // Get search points from API call into an array
-      const searchPoints = response.data.map(result => {
-        return { latitude: parseFloat(result.lat), longitude: parseFloat(result.lon)};
-      })
-      // console.log(searchPoints)
+      // .map(result => {
+      //   return { latitude: parseFloat(result.lat), longitude: parseFloat(result.lon) };
+      // });
       const events = this.state.showsAndArtists;
       //Grab event points from state
       const eventPoints = events.map(event => {
-        return {latitude: parseFloat(event.lat), longitude: parseFloat(event.lng)}
-      })
-
-      for (let i=0; i < searchPoints.length; i++) {
-        console.log(searchPoints[i])
+        return { latitude: parseFloat(event.lat), longitude: parseFloat(event.lng) };
+      });
         let results = eventPoints.filter(event => {
-          console.log(event);
-          geolib.isPointInCircle(event, searchPoints[i], 5000);
-      })
-      console.log(results)
-    }
-  })
+          return geolib.isPointInCircle(event, userLocation, 1609);
+        });
+        console.log(results);
+    });
 };
 
   render() {
@@ -81,14 +93,16 @@ class EventsContainer extends Component {
           <Content>
             <HeaderComponent search={this.submitSearch} updateSearch={this.updateSearch} currentSearch={this.state.search} />
             <Row>
-              <Col span={8}>
+              <Col span={6}>
                 <EventDetails currentEvent={currentEvent} />
               </Col>
+              <Col span={6}>
+                <EventsList showsAndArtists={this.state.showsAndArtists} updateCurrentEvent={this.updateCurrentEvent} />
+              </Col>
 
-            <Col span={8}><EventsList showsAndArtists={this.state.showsAndArtists} updateCurrentEvent={this.updateCurrentEvent} /></Col>
-              
-            <Col span={8}><ShowMap shows={this.state.showsAndArtists} currentEvent={currentEvent} updateCurrentEvent={this.updateCurrentEvent} /></Col>
-              
+              <Col span={12}>
+                <ShowMap shows={this.state.showsAndArtists} currentEvent={currentEvent} updateCurrentEvent={this.updateCurrentEvent} />
+              </Col>
             </Row>
           </Content>
         </div>;
