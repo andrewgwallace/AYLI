@@ -1,41 +1,50 @@
 import React, { Component } from 'react';
 import EventsListItem from './EventsListItem'
 import {List, Avatar} from 'antd';
+import FormItem from '../../../../node_modules/antd/lib/form/FormItem';
+const datetime = require("node-datetime");
 
 class EventsList extends Component {
-  state = {
-    results: []
-  }
   
-
   render() {
-    const results = this.props.nearbyEvents
-    console.log(results)
-    // const results = this.props.submitSearch
-    if(!results) {
-      return null
-    } else {
-      // console.log(results)
-    // const eventDetails = results.map(details => {
-    //   return 
-    //   <EventsListItem key={details.id} details={details} updateCurrentEvent={this.props.updateCurrentEvent} results={this.results} />;
-    // });
-    return (
+  // const { start_time, end_time, artistImg } = this.props.nearbyEvents
 
-      <List
-        style={{ width: '80%' }}
-        itemLayout="horizontal"
-        dataSource={results}
-        renderItem={item => (
+    // let st = datetime.create(results.start_time);
+    // let et = datetime.create(results.end_time);
+    // let formattedStart = st.format("I:M p");
+    // let formattedEnd = et.format("I:M p");
+    
+    const results = this.props.nearbyEvents;
+    console.log(results[0])
+    // const results = this.props.submitSearch
+    if (!results) {
+      return null;
+    } else {
+      return <List style={{ width: "80%" }} itemLayout="horizontal" dataSource={results} renderItem={item => {
+        let status = "";
+        const startTimeSeconds = new Date(item.start_time).getTime();
+        const endTimeSeconds = new Date(item.end_time).getTime();
+        const now = Date.now();
+
+        console.log(startTimeSeconds, endTimeSeconds, now);
+
+        if (startTimeSeconds < now && now < endTimeSeconds) {
+          status = "Performing now!";
+        } else {
+          status = `Starts: ${datetime.create(item.start_time).format("I:M p")}`;
+        }
+        console.log(status);
+
+        return (
           <List.Item onClick={() => this.props.updateCurrentEvent(item.id)}>
             <List.Item.Meta
-              avatar={<Avatar src={item.artistImg}/>}
+              avatar={<Avatar src={item.artistImg} />}
               title={item.artist}
+              description={`${status} Ends: ${datetime.create(item.end_time).format("I:M p")}`}
             />
-        </List.Item>
-      )}
-      />
-     ) 
+          </List.Item>
+        )
+      }} />;
     }
   }
 }

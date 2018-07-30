@@ -1,7 +1,7 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.table("shows", t => {
-    t.time("end_time");
+    t.datetime("end_time");
   });
 };
 

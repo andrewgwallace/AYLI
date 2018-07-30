@@ -72,6 +72,7 @@ class EventsContainer extends Component {
         return {location: { 
           latitude: parseFloat(event.lat), 
           longitude: parseFloat(event.lng)},
+          id: event.id,
           artist: event.displayName,
           artistImg: event.profileImg,
           start_time: event.start_date_time,
