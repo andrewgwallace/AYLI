@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Button } from 'antd'
-// import './SearchBox.css'
+// import './SearchButton.css'
 
 // const Search = Input.Search
 
@@ -27,8 +27,8 @@ class SearchButton extends Component {
     return (
       
 
-      <Button onClick={this.props.submitSearch} type="primary" icon="compass" size={this.state.size}/>
-      /* <Search className="SearchBox"
+      <Button onClick={this.props.submitSearch} type="primary" icon="compass" size={this.state.size}>Find a Performer!</Button>
+      /* <Search className="SearchButton"
         type="text"
         name="search"
         value={this.props.currentSearch}
