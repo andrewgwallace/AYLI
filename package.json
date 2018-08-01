@@ -6,7 +6,7 @@
     "dev": "npm run serve-client & nodemon ./server/app.js",
     "postinstall": "cd ./client && yarn",
     "serve-client": "cd ./client && yarn start",
-    "start": "npm run build-client && node ./server/app.js"
+    "start": "npm run build-client & node ./server/app.js"
   },
   "license": "ISC",
   "dependencies": {
