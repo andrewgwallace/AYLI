@@ -1,27 +1,36 @@
-import React, { Component } from 'react';
+import React from "react";
 import './App.css';
+import EventsContainer from '../eventsContainer/EventsContainer';
+import { Layout } from "antd";
 
-class App extends Component {
-  state = {
-    loading: true,
+const { Content } = Layout;
+
+
+// THE MAIN APP COMPONENT
+// Establish the component to rendered passing in the state which contains the markers. `markers: data.photos` is an array; you'll pass the array of performances.
+class App extends React.PureComponent {
+
+  componentWillMount() {
+    this.setState({
+      loading: false
+    });
   }
 
-  componentWillMount = async () => {
-    const response = await fetch('/api/ping')
-    const json = await response.json()
-    if (json.message) this.setState({ loading: false})
-  }
+  // Render the state of the markers on the map.
 
   render() {
     return (
-      <div className="App">
-        {
-          !this.state.loading &&
-          <h1>You've connected to the server!</h1>
-        }
-      </div>
-    );
+      !this.state.loading && (
+        <div className="App">
+        <Content>
+          <EventsContainer />
+        </Content>
+        </div>
+      )
+    )
   }
 }
+// END SHOW MAP
+
 
 export default App;

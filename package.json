@@ -10,12 +10,28 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@google/maps": "^0.5.4",
+    "antd": "^3.7.3",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "es6-promise": "^4.2.4",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "geolib": "^2.0.24",
+    "isomorphic-fetch": "^2.2.1",
+    "jsonwebtoken": "^8.3.0",
     "knex": "^0.14.6",
+    "lodash": "^4.17.10",
     "morgan": "^1.9.0",
-    "pg": "^7.4.3"
+    "node-twitter-api": "^1.8.0",
+    "passport": "^0.4.0",
+    "passport-twitter": "^1.0.4",
+    "pg": "^7.4.3",
+    "react-google-maps": "^9.4.5",
+    "recompose": "^0.27.1",
+    "secret": "^1.0.2"
   },
   "devDependencies": {
     "nodemon": "^1.14.7"
