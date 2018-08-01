@@ -8,7 +8,7 @@ const knex = require("../../db/knex");
 const router = express.Router();
 const callbackURL =
   process.env.NODE_ENV === "production"
-    ? "https://www.deployedsite.com/auth/facebook/callback"
+    ? "https://immense-savannah-75072.herokuapp.com/auth/facebook/callback"
     : "/auth/twitter/callback";
 
 passport.use(new TwitterStrategy({

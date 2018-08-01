@@ -21,7 +21,7 @@
     if (document.cookie) {
       const token = document.cookie.split('=')[1]
       if (token && window.opener) {
-        const origin = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://www.yourdeployedsite.com'
+        const origin = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://immense-savannah-75072.herokuapp.com'
         window.opener.postMessage({ token }, origin)
         let cookieString = 'token=';
         const expiryDate = new Date();
