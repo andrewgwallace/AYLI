@@ -60,8 +60,8 @@ class EventsContainer extends Component {
   }
 
   submitSearch = async () => {
-    const baseURL = "http://localhost:3004";
-    // const baseURL = "https://infinite-sea-10025.herokuapp.com/";
+    // const baseURL = "http://localhost:3004";
+    const baseURL = "https://immense-savannah-75072.herokuapp.com/";
     const location = await this.getLocation();
     // const query = encodeURI(this.state.search)
   axios
