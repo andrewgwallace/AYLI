@@ -81,7 +81,7 @@ class EventsContainer extends Component {
         };
       });
       let results = eventPoints.filter(event => {
-        const isIn = geolib.isPointInCircle(event.location, userLocation, 20000);
+        const isIn = geolib.isPointInCircle(event.location, userLocation, 30000);
         return isIn;
       });
         this.setState({
@@ -99,7 +99,7 @@ class EventsContainer extends Component {
           <Content>
             <HeaderComponent search={this.submitSearch} updateSearch={this.updateSearch} currentSearch={this.state.search} />
           <Row>
-              <Col align="center" span={6}>
+              <Col align="center" className="details" span={6}>
                 <EventDetails currentEvent={currentEvent} />
               </Col>
             <Col span={6}>

@@ -16,9 +16,9 @@ class EventDetails extends Component {
     if (!eventDetails) {
       return (
         <div>
-          <p>
-            Please click "Find a Performer!"
-          </p>
+          <h3>
+            Ayli helps you find local street performers in your area. To get started, click "Find a Performer!" above.
+          </h3>
         </div>
       )
     } else {

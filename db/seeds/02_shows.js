@@ -7,8 +7,8 @@ exports.seed = function (knex, Promise) {
       return knex("shows").insert([
         {
           id: "1",
-          start_date_time: "2018-07-30 11:34",
-          end_time: "2018-08-02 16:34",
+          start_date_time: "2018-08-05 13:00",
+          end_time: "2018-08-05 18:45",
           lat: "40.755977",
           lng: "-73.986988",
           location: "42nd St and 7th Ave.",
@@ -18,8 +18,8 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: "2",
-          start_date_time: "2018-08-03 14:00",
-          end_time: "2018-08-03 17:00",
+          start_date_time: "2018-08-06 14:00",
+          end_time: "2018-08-06 17:00",
           lat: "40.757230",
           lng: "-73.989799",
           location: "Times Square, NYC",
@@ -29,12 +29,12 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: "3",
-          start_date_time: "2018-08-04 14:00",
-          end_time: "2018-08-04 19:00",
+          start_date_time: "2018-08-12 14:00",
+          end_time: "2018-08-12 19:00",
           lat: "45.646812",
           lng: "-84.474826",
           location: "NYC",
-          details: "Test",
+          details: "We're AYLI, and you found us!",
           artist_id: "3"
         }
       ]);

@@ -7,8 +7,8 @@ exports.seed = function (knex, Promise) {
       return knex("shows").insert([
         {
           id: "1",
-          start_date_time: "2018-07-30 11:34",
-          end_time: "2018-08-02 16:34",
+          start_date_time: "2018-08-04 11:34",
+          end_time: "2018-08-04 16:34",
           lat: "40.755977",
           lng: "-73.986988",
           location: "42nd St and 7th Ave.",
@@ -34,7 +34,7 @@ exports.seed = function (knex, Promise) {
           lat: "45.646812",
           lng: "-84.474826",
           location: "NYC",
-          details: "Test",
+          details: "We're AYLI, and you found us!",
           artist_id: "3"
         }
       ]);
