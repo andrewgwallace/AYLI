@@ -17,7 +17,7 @@ class EventDetails extends Component {
       return (
         <div>
           <h3>
-            Ayli helps you find local street performers in your area. To get started, click "Find a Performer!" above.
+            AYLI. helps you find local street performers in your area. To get started, click "Find a Performer!" above and then click a result.
           </h3>
         </div>
       )

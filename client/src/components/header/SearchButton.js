@@ -13,6 +13,8 @@ class SearchButton extends Component {
     size: 'default'
   }
  
+  
+
   onChange = (e) => { this.props.updateSearch(e.target.name, e.target.value) }
   
   getLocation = (e) => {
@@ -23,20 +25,8 @@ class SearchButton extends Component {
   }
 
   render() {
-    // console.log(this.props.currentSearch)
     return (
-      
-
-      <Button onClick={this.props.submitSearch} type="primary" icon="compass" size={this.state.size}>Find a Performer!</Button>
-      /* <Search className="SearchButton"
-        type="text"
-        name="search"
-        value={this.props.currentSearch}
-        enterButton
-        onChange={this.onChange}
-        placeholder="Enter an address or zipcode"
-        onSearch={this.props.submitSearch}
-      /> */
+      <Button onClick={this.props.turnSplashOff && this.props.submitSearch} type="primary" icon="compass" size={this.state.size}>Find a Performer!</Button>
     );
   }
 }

@@ -51,6 +51,10 @@ app.get(`/search/`, (req, res, next) => {
   // console.log(response.data.results[0].geometry.location)
 });
 
+app.get('/home/', (req, res, next) => {
+  const home = path.join(__dirname, '../client/build/home.html')
+  res.sendFile(home)
+})
 
 
 app.get('/', (req, res, next) => {

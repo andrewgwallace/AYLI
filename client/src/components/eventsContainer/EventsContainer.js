@@ -17,7 +17,8 @@ class EventsContainer extends Component {
       loading: true,
       currentEvent: null,
       showsAndArtists: [],
-      searchResults: []
+      searchResults: [],
+      splash: true
     };
 
 
@@ -59,6 +60,14 @@ class EventsContainer extends Component {
     });
   }
 
+  turnSplashOff = (e) => {
+    e.preventDefault();
+    this.setState({
+      splash: false
+    })
+    console.log("Splash off")
+  }
+
   submitSearch = async () => {
     // const baseURL = "http://localhost:3004";
     const baseURL = "https://immense-savannah-75072.herokuapp.com";
@@ -97,18 +106,18 @@ class EventsContainer extends Component {
       const currentEvent = this.state.showsAndArtists.find((show) => show.id === this.state.currentEvent)
       return <div className="headerAndContent">
           <Content>
-            <HeaderComponent search={this.submitSearch} updateSearch={this.updateSearch} currentSearch={this.state.search} />
-          <Row>
+            <HeaderComponent search={this.submitSearch} updateSearch={this.updateSearch} currentSearch={this.state.search} turnSplashOff={this.turnSplashOff} />
+          {/* { !this.state.splash &&  */}
+          <Row>           
               <Col align="center" className="details" span={6}>
                 <EventDetails currentEvent={currentEvent} />
               </Col>
             <Col span={6}>
               <EventsList nearbyEvents={this.state.searchResults} updateCurrentEvent={this.updateCurrentEvent} />
             </Col>
-              
             <Col span={12}><ShowMap shows={this.state.showsAndArtists} currentEvent={currentEvent} updateCurrentEvent={this.updateCurrentEvent} /></Col>
-              
             </Row>
+             {/* } */}
           </Content>
         </div>;
     }

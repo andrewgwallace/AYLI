@@ -36,11 +36,7 @@ class Twitter extends Component {
     window.addEventListener('message', (event) => {
       if (event.data.token) {
         localStorage.token = event.data.token;
-        // this.setState({
-        //   user: null
-        // })
         this.parseToken();
-
         popup.close();
         
       }

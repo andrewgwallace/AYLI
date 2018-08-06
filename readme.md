@@ -1,10 +1,10 @@
-# React Single Repo Example
+# AYLI
 
-This is an example repository to show how you could have an API and React client in the same repositories. It includes setup for knex.
+AYLI is a platform that allows vistors to find local street performers and artists to provide performance dates for visitors to find easily find and follow them.
 
 ## Installation
-1. `createdb mycoolapp` (you can change the name of the db in `knexfile.js`)
-1. `yarn && cd client && yarn`
+1. Create a local postgreSQL database called `alyi` (or you can call it whatever you wish and change the name of the db in `knexfile.js`)
+2. run `npm install`
 
 ## Local Development
 
@@ -26,16 +26,16 @@ npm start
 
 This will build a new version of the client into a `build/` folder. It will then run the server which will deliver the client. In this case, you will want to go to port `3004` by default.
 
-## Deployment
+## Node Packages
 
-To deploy to Heroku, you simply need to run:
+AYLI uses the following node packages for production/development
 
 ```bash
-heroku create
-heroku addons:create heroku-postgresql:hobby-dev
-git push heroku master
-heroku run knex migrate:latest
-heroku open
+knex
+pg
+express
+nodemon
+cors
 ```
 
 The `postinstall` script will make sure all relevant packages are installed.
