@@ -5,8 +5,8 @@ import EventDetails from "./EventDetails";
 import ShowMap from '../showMap/ShowMap';
 import HeaderComponent from '../header/Header'
 import './EventsContainer.css'
+import Splash from '../splash/Splash'
 import { Row, Col, Layout } from 'antd';
-import { callbackify } from "util";
 const axios = require('axios');
 const geolib = require('geolib');
 const { Content } = Layout;
@@ -46,6 +46,11 @@ class EventsContainer extends Component {
 
   getLocation = () => {
     return new Promise((resolve) => {
+      if (this.state.splash) {
+      this.setState({
+        splash: false
+      })
+    }
       navigator.geolocation.getCurrentPosition((position) => {
         resolve(
           `${position.coords.latitude}+${position.coords.longitude}`
@@ -58,14 +63,6 @@ class EventsContainer extends Component {
           }));
       });
     });
-  }
-
-  turnSplashOff = (e) => {
-    e.preventDefault();
-    this.setState({
-      splash: false
-    })
-    console.log("Splash off")
   }
 
   submitSearch = async () => {
@@ -106,18 +103,20 @@ class EventsContainer extends Component {
       const currentEvent = this.state.showsAndArtists.find((show) => show.id === this.state.currentEvent)
       return <div className="headerAndContent">
           <Content>
-            <HeaderComponent search={this.submitSearch} updateSearch={this.updateSearch} currentSearch={this.state.search} turnSplashOff={this.turnSplashOff} />
-          {/* { !this.state.splash &&  */}
-          <Row>           
-              <Col align="center" className="details" span={6}>
-                <EventDetails currentEvent={currentEvent} />
-              </Col>
-            <Col span={6}>
-              <EventsList nearbyEvents={this.state.searchResults} updateCurrentEvent={this.updateCurrentEvent} />
-            </Col>
-            <Col span={12}><ShowMap shows={this.state.showsAndArtists} currentEvent={currentEvent} updateCurrentEvent={this.updateCurrentEvent} /></Col>
-            </Row>
-             {/* } */}
+            <HeaderComponent search={this.submitSearch} updateSearch={this.updateSearch} currentSearch={this.state.search} />
+            {!this.state.splash ? <Row>
+                <Col align="center" className="details" span={6}>
+                  <EventDetails currentEvent={currentEvent} />
+                </Col>
+                <Col span={6}>
+                  <EventsList nearbyEvents={this.state.searchResults} updateCurrentEvent={this.updateCurrentEvent} />
+                </Col>
+                <Col span={12}>
+                  <ShowMap shows={this.state.showsAndArtists} currentEvent={currentEvent} updateCurrentEvent={this.updateCurrentEvent} />
+                </Col>
+              </Row> 
+              : 
+              <Splash search={this.submitSearch} updateSearch={this.updateSearch} currentSearch={this.state.search} />}
           </Content>
         </div>;
     }

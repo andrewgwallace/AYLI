@@ -15,7 +15,6 @@ class EventsList extends Component {
     // let formattedEnd = et.format("I:M p");
     
     const results = this.props.nearbyEvents;
-    console.log(results[0])
     // const results = this.props.submitSearch
     if (!results) {
       return "No performers found. :("

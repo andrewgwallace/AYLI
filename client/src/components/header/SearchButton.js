@@ -10,7 +10,7 @@ class SearchButton extends Component {
   //   results: []
   // };
   state = {
-    size: 'default'
+    size: 'large'
   }
  
   
@@ -26,7 +26,7 @@ class SearchButton extends Component {
 
   render() {
     return (
-      <Button onClick={this.props.turnSplashOff && this.props.submitSearch} type="primary" icon="compass" size={this.state.size}>Find a Performer!</Button>
+      <Button onClick={this.props.submitSearch} type="primary" icon="compass" size={this.state.size}>Find a Performer!</Button>
     );
   }
 }

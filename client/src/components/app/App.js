@@ -19,8 +19,7 @@ class App extends React.PureComponent {
   render() {
     return !this.state.loading && <div className="App">
         <Content>
-          <HeaderComponent search={this.submitSearch} updateSearch={this.updateSearch} currentSearch={this.state.search} />
-          <Splash />
+          <EventsContainer />
         </Content>
       </div> 
   }

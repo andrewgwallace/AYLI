@@ -1,23 +1,23 @@
 import React, { Component } from "react";
-import { Button, Row, Col } from "antd";
+import { Layout, Row, Col } from "antd";
+import './Splash.css';
+import SearchButton from '../header/SearchButton'
+const { Content } = Layout;
+
 
 class Splash extends Component {
 
-render() {
+  render() {
 
- const splashOff = this.props.turnSplashOff
-
-
-  return (
-    <Row>
-      <Col span={12}>
-        <h1> WELCOME!</h1>
-        <Button onClick={splashOff}>Let's Go!</Button>
-      </Col>
-    </Row>
-  )
-}
-
+    return <Row className="splash" type="flex" justify="space-around" align="middle" style={{ height: "90vh" }}>
+        <Col span={10} className="centerContent">
+          <h1 className="splash_h1">AYLI</h1>
+          <h2>All the world's a stage.</h2>
+        <SearchButton className="splashSearchButton" submitSearch={this.props.search} updateSearch={this.props.updateSearch} currentSearch={this.props.currentSearch}/>
+          {/* <h3>Click "Find a Performer!" above to get started</h3>  */}
+        </Col>
+      </Row>;
+  }
 }
 
 export default Splash

@@ -83,8 +83,28 @@ a.sendRequestButton.ant-btn {
 
 .ant-layout-header {
   padding: 0 25px;
+  height: 10vh;
+  line-height: 85px;
 }
 
 .ant-col-8 {
   padding: 5px;
+}
+
+.details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ant-list-empty-text {
+  content: "No performers found. :(";
+}
+
+.details {
+  padding: 20px 5px 20px 5px;
+}
+
+.headerSearch {
+  width: 15%;
 }

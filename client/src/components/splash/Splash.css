@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Courgette');
+
+
+.centerContent {
+  text-align: center;
+}
+
+.splash {
+    background:linear-gradient(-90deg,RGBA(0, 21, 33, 0.65),RGBA(0, 21, 33, 0.15)),url('/img/street_performer.jpg');
+    color: RGBA(0, 21, 33, 0.85);
+    position: fixed;
+    top: 10vh;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    /* z-index: -100; */
+}
+
+.splash_h1 {
+  font-family: 'Courgette', cursive;
+  font-size: 75px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: white;
+  font-size: 35px;
+}
+
+h3 {
+  color: white;
+  font-size: 24px;
+}
+
+.splashSearchButton {
+  z-index: 100;
+}

@@ -31,8 +31,10 @@ class HeaderComponent extends Component {
               </Col>
 
               <Col span={6} className="headerSearch">
-                <SearchButton submitSearch={this.props.search} updateSearch={this.props.updateSearch} turnSplashOff={this.props.turnSplashOff} currentSearch={this.props.currentSearch} style={{ textAlign: "right" }} />
+                {/* <SearchButton submitSearch={this.props.search} updateSearch={this.props.updateSearch} currentSearch={this.props.currentSearch} style={{ textAlign: "right" }} /> */}
               </Col>
+
+              {/* TWITTER SIGN IN DISABLED TEMPORARILY */}
               {/* <Col span={6} style={{ textAlign: 'right' }}> 
               <Twitter 
               updateUser={this.updateUser} 
