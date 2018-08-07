@@ -28,7 +28,7 @@ class ShowMap extends Component {
       // console.log(this.props.shows);
       return (
         <div>
-          <MapWithAMarkerClusterer shows={showList} searchResults={this.props.searchResults} />
+          <MapWithAMarkerClusterer location={this.props.location} shows={showList} searchResults={this.props.searchResults} />
         </div>
       )
     }

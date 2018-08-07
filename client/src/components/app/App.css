@@ -93,16 +93,6 @@ a.sendRequestButton.ant-btn {
   padding: 5px;
 }
 
-.details-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* .ant-list-empty-text {
-  content: " <div>No performances near you.</div>";
-} */
-
 .details {
   padding: 20px 5px 20px 5px;
 }
@@ -111,6 +101,6 @@ a.sendRequestButton.ant-btn {
   width: 15%;
 }
 
-.selected {
-  background-color: RGBA(38, 140, 255, 0.45)
+.eventDetails {
+
 }

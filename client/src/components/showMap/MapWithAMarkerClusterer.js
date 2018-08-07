@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import {Button} from 'antd';
-const fetch = require("isomorphic-fetch");
 const _ = require("lodash");
 const { compose, withProps, withHandlers, lifecycle } = require("recompose");
 const {
@@ -18,22 +16,28 @@ const {
 // } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
 // Using the compose method component from the recompse library, generate the the properties required for the map element to be displayed
 
+
+// let lat = parseFloat(this.props.location[0]);
+// let lng = parseFloat(this.props.location[1]);
+
 const MapWithAMarkerClusterer = compose(
   withProps({
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyA3HUPGnMXmJP39ubMsFBVHjX1NNGwjY9A&v=3.exp&libraries=geometry,drawing,places", //removed `,places` after drawing'
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `100vh` }} />,
-    mapElement: <div style={{ height: `100%` }} />
+    mapElement: <div style={{ height: `100%` }} />,
   }),
+
 //~~~~~~~~~~~~~~~~~~~~~~
   lifecycle({
+
     componentWillMount() {
       const refs = {}
-
       this.setState({
         bounds: null,
         center: {
+          //lat: lat, lng: lng
           lat: 41.9, lng: -87.624
         },
         markers: [],
@@ -43,8 +47,8 @@ const MapWithAMarkerClusterer = compose(
         onBoundsChanged: () => {
           this.setState({
             bounds: refs.map.getBounds(),
-            center: refs.map.getCenter(),
-          })
+            center: refs.map.getCenter()
+          });
         },
         onSearchBoxMounted: ref => {
           refs.searchBox = ref;
@@ -55,23 +59,27 @@ const MapWithAMarkerClusterer = compose(
 
           places.forEach(place => {
             if (place.geometry.viewport) {
-              bounds.union(place.geometry.viewport)
+              bounds.union(place.geometry.viewport);
             } else {
-              bounds.extend(place.geometry.location)
+              bounds.extend(place.geometry.location);
             }
           });
           const nextMarkers = places.map(place => ({
-            position: place.geometry.location,
+            position: place.geometry.location
           }));
-          const nextCenter = _.get(nextMarkers, '0.position', this.state.center);
+          const nextCenter = _.get(
+            nextMarkers,
+            "0.position",
+            this.state.center
+          );
 
           this.setState({
             center: nextCenter,
-            markers: nextMarkers,
+            markers: nextMarkers
           });
           // refs.map.fitBounds(bounds);
-        },
-      })
+        }
+      });
     },
   }),
   //~~~~~~~~~~~~~~~~~~~~

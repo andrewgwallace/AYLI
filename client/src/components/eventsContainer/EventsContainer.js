@@ -18,7 +18,8 @@ class EventsContainer extends Component {
       currentEvent: null,
       showsAndArtists: [],
       searchResults: [],
-      splash: true
+      splash: true,
+      location: []
     };
 
 
@@ -69,7 +70,6 @@ class EventsContainer extends Component {
     // const baseURL = "http://localhost:3004";
     const baseURL = "https://immense-savannah-75072.herokuapp.com";
     const location = await this.getLocation();
-    // const query = encodeURI(this.state.search)
   axios
     .get(`${baseURL}/search?s=${location}`)
     .then(response => {
@@ -91,7 +91,8 @@ class EventsContainer extends Component {
         return isIn;
       });
         this.setState({
-          searchResults: results
+          searchResults: results,
+          location: location.split('+')
         })
     });
 };
@@ -112,7 +113,7 @@ class EventsContainer extends Component {
                   <EventsList nearbyEvents={this.state.searchResults} updateCurrentEvent={this.updateCurrentEvent} />
                 </Col>
                 <Col span={12}>
-                  <ShowMap shows={this.state.showsAndArtists} currentEvent={currentEvent} updateCurrentEvent={this.updateCurrentEvent} />
+                  <ShowMap location={this.state.location} shows={this.state.showsAndArtists} currentEvent={currentEvent} updateCurrentEvent={this.updateCurrentEvent} />
                 </Col>
               </Row> 
               : 

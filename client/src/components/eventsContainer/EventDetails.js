@@ -24,7 +24,7 @@ class EventDetails extends Component {
     } else {
       return (
 
-      <Row type="flex" justify="space-around" align="middle">
+        <Row className="eventDetails" type="flex" justify="space-around" align="middle" style={{ height: "90vh" }}>
         <Col>
       <Card cover={<img src={eventDetails.profileImg.replace(/(_normal)/g, "_200x200")} />} style={{ width: '80%' }}>
           <h1>{eventDetails.displayName}</h1>
