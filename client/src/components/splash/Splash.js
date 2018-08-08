@@ -11,9 +11,9 @@ class Splash extends Component {
 
     return <Row className="splash" type="flex" justify="space-around" align="middle" style={{ height: "90vh" }}>
         <Col span={10} className="centerContent">
-          <h1 className="splash_h1">AYLI</h1>
+        <img className="mainLogo" src="/img/AYLI_logo.png"/>
           <h2>All the world's a stage.</h2>
-        <SearchButton className="splashSearchButton" submitSearch={this.props.search} updateSearch={this.props.updateSearch} currentSearch={this.props.currentSearch}/>
+          <SearchButton className="splashSearchButton" submitSearch={this.props.search} updateSearch={this.props.updateSearch} currentSearch={this.props.currentSearch} />
           {/* <h3>Click "Find a Performer!" above to get started</h3>  */}
         </Col>
       </Row>;

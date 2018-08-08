@@ -37,3 +37,13 @@ h3 {
 .splashSearchButton {
   z-index: 100;
 }
+
+.mainLogo {
+  width: 50%;
+  height: auto;
+}
+
+.headerLogo {
+  width: 10%;
+  height: auto;
+}

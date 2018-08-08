@@ -27,7 +27,7 @@ class HeaderComponent extends Component {
           <div className="searchAndTwitter">
             <Row type="flex" justify="space-between">
               <Col span={6}>
-                <h1 style={{ color: "white" }}>AYLI</h1>
+                <img className="headerLogo" src="/img/AYLI_logo.png" />
               </Col>
 
               <Col span={6} className="headerSearch">
